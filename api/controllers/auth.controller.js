@@ -3,6 +3,7 @@ import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
 
+
 export const signup = async(req, res, next) => {
     const { username, email, password } = req.body;
     const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -14,6 +15,7 @@ export const signup = async(req, res, next) => {
         next(error);
     }
 };
+
 
 export const signin = async(req, res, next) => {
     const { email, password } = req.body;
@@ -32,6 +34,7 @@ export const signin = async(req, res, next) => {
         next(error);
     }
 };
+
 
 export const google = async (req, res, next) => {
     try {
@@ -62,5 +65,14 @@ export const google = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-}
+};
 
+
+export const signout = async (req, res, next) => {
+    try {
+        res.clearCookie('access_token');
+        res.status(200).json('User has been logged out!');
+    } catch (error) {
+        next(error);
+    }
+};
