@@ -46,7 +46,7 @@ const listingSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        //dodaj jos za vakcinaciju, starost zivotinje...
+        //dodaj jos za adopted
     }, {timestamps: true}
 )
 
