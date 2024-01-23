@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css/bundle';
-import { FaMapMarkedAlt, FaMapMarkerAlt, FaMars, FaPaw, FaSyringe, FaVenus } from 'react-icons/fa';
+import { FaHome, FaMapMarkedAlt, FaMapMarkerAlt, FaMars, FaPaw, FaSyringe, FaVenus } from 'react-icons/fa';
 export default function Listing() {
     SwiperCore.use([Navigation]);
     const [listing, setListing] = useState(null);
@@ -66,7 +66,7 @@ export default function Listing() {
 
                     <div className=''>
                         <p className='bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
-                            Adopt
+                            For adoption
                         </p>
                     </div>
 
@@ -98,10 +98,19 @@ export default function Listing() {
                             }
                         </li>
 
+                
                         <li className='flex items-center gap-2 whitespace-nowrap '>
                             <FaSyringe className='text-lg'/>
                             {listing.vaccinated ? 'Vaccinated' : 'Not vaccinated'} 
                         </li>
+
+                        {listing.houseTrained && (
+                            <li className='flex items-center gap-2 whitespace-nowrap'>
+                                <FaHome className='text-lg'/>
+                                <span> House-trained</span>
+                            </li>
+                        )}
+                        
 
                     </ul>
 

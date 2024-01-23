@@ -15,7 +15,7 @@ const listingSchema = new mongoose.Schema(
             required: true,
         },
         age: {
-            type: Number,
+            type: String,
             required: true,
         },
         size: {
@@ -30,11 +30,19 @@ const listingSchema = new mongoose.Schema(
             type: Boolean,
             required: true,
         },
+        houseTrained: {
+            type: Boolean, 
+            required: true,
+        },
         description: {
             type: String,
             required: true,
         },
         location: {
+            type: String,
+            required: true,
+        },
+        status: {
             type: String,
             required: true,
         },
@@ -46,7 +54,6 @@ const listingSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        //dodaj jos za adopted
     }, {timestamps: true}
 )
 

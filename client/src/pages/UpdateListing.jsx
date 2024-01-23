@@ -17,9 +17,11 @@ export default function CreateListing() {
         description: '',
         location: '',
         vaccinated: false,
-        age: 0,
+        houseTrained: false,
+        age: 'young',
         size: 'small',
-        gender: 'female',
+        gender: 'male',
+        status: 'forAdoption',
     });
     const [imageUploadError, setImageUploadError] = useState(false);
     const [uploading, setUploading] = useState(false);
@@ -95,7 +97,7 @@ export default function CreateListing() {
 
     //.......
     const handleChange = (e) => {
-        if (e.target.id === 'vaccinated') {
+        if (e.target.id === 'vaccinated' || e.target.id === 'houseTrained') {
             setFormData({
                 ...formData,
                 [e.target.id]: e.target.checked
@@ -162,19 +164,29 @@ export default function CreateListing() {
                 <textarea type="text" placeholder='Description' className='border p-3 rounded-lg' id='description' required onChange={handleChange} value={formData.description}/>
                 <input type="text" placeholder='Location' className='border p-3 rounded-lg' id='location' required onChange={handleChange} value={formData.location}/>
 
-                <div className=''>
+                <div className='flex flex-wrap gap-4'>
                     <div className='flex flex-row gap-2'>
                         <input type='checkbox' id='vaccinated' className='w-5' onChange={handleChange} checked={formData.vaccinated}/>
                         <span> Vaccinated </span>
                     </div>
+                    <div className='flex flex-row gap-2'>
+                        <input type='checkbox' id='houseTrained' className='w-5' onChange={handleChange} checked={formData.houseTrained} />
+                        <span> House-trained </span>
+                    </div>
                 </div>
 
-                <div className=''>
+                {/*<div className=''>
                     <div className='flex items-center gap-2'>
                         <input type="number" id='age' min='0' max='20' required className='border p-3 rounded-lg' onChange={handleChange} value={formData.age} />
                         <p> Age </p>
                     </div>
-                </div>
+                </div> */}
+
+                <select id='age' className='border p-3 rounded-lg' required onChange={handleChange} value={formData.age}>
+                    <option value="young"> Young </option>
+                    <option value="adult"> Adult </option>
+                    <option value="senior"> Senior </option>
+                </select>
 
                 <select id='size' className='border p-3 rounded-lg' required onChange={handleChange} value={formData.size}>
                     <option value="small"> Small </option>
@@ -183,8 +195,8 @@ export default function CreateListing() {
                 </select>
 
                 <select id='gender' className='border p-3 rounded-lg' required onChange={handleChange} value={formData.gender}>
-                    <option value="female"> Female </option>
                     <option value="male"> Male </option>
+                    <option value="female"> Female </option>
                 </select>
 
             </div>
@@ -212,7 +224,7 @@ export default function CreateListing() {
                     ))
                 }
 
-                <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'> {loading ? 'Creating...' : 'Update'} </button>
+                <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'> {loading ? 'Updating...' : 'Update'} </button>
                 { error && <p className='text-red-700 text-sm'> {error} </p> }
             </div>
 
