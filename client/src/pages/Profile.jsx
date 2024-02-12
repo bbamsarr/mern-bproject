@@ -6,6 +6,7 @@ import { app } from '../firebase';
 import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signoutUserFailure, signoutUserStart, signoutUserSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Modal from '../components/Modal';
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -18,6 +19,9 @@ export default function Profile() {
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
   const [deleteListingError, setDeleteListingError] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   const dispatch = useDispatch();
 
 
@@ -94,6 +98,7 @@ export default function Profile() {
         return;
       }
       dispatch(deleteUserSuccess(data));
+      closeModal();
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
@@ -180,7 +185,8 @@ export default function Profile() {
       </form>
 
       <div className='flex justify-between mt-5'>
-        <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'> Delete account </span>
+        <span onClick={openModal} className='text-red-700 cursor-pointer'> Delete account </span>
+        <Modal isOpen={isModalOpen} onClose={closeModal} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete account?"/>
         <span onClick={handleSignout} className='text-red-700 cursor-pointer'> Sign out </span>
       </div>
 
