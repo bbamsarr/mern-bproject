@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 
 export default function Footer() {
   return (
-    <footer className='bg-slate-400'>
+    <footer className='bg-custom-darkblue mt-10'>
 
         <div className='flex flex-wrap items-center justify-evenly p-6 gap-4 text-white'>
             <Link to={'/'}>
-                <FaPaw className='text-3xl sm:text-5xl text-white'/>
+                <FaPaw className='text-3xl sm:text-5xl text-custom-white'/>
                 <h1 className='text-sm sm:text-xl font-semibold'>
                     <span className='text-white'> Web </span>
                     <span className='text-gray-300'> App </span>
@@ -20,7 +20,7 @@ export default function Footer() {
 
                 <Link to={'/about'}> About </Link>
 
-                <Link to={'/about'}> Something </Link>
+                <Link to={'/information'}> Information </Link>
             </div>
         </div>
 
