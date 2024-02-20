@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css/bundle';
 import { FaHome, FaMapMarkedAlt, FaMapMarkerAlt, FaMars, FaPaw, FaSyringe, FaVenus } from 'react-icons/fa';
+import AdoptionModal from '../components/AdoptionModal';
 export default function Listing() {
     SwiperCore.use([Navigation]);
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] =  useState(false);
+    const {currentUser} = useSelector((state) => state.user);
+    const [isAdoptionModalOpen, setIsAdoptionModalOpen] = useState(false);
     const params = useParams();
+
 
     useEffect(() => {
         const fetchListing = async () => {
@@ -34,7 +39,6 @@ export default function Listing() {
         };
         fetchListing();
     }, [params.listingId]);
-    console.log(loading);
 
   
 
@@ -64,11 +68,12 @@ export default function Listing() {
                         {listing.location}
                     </p>
 
+                    {/** 
                     <div className=''>
-                        <p className='bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
-                            For adoption
+                        <p className='bg-red-700 w-full max-w-[200px] text-white text-center p-2 rounded-md'>
+                            Adopt
                         </p>
-                    </div>
+                    </div>*/}
 
                     <p className='text-slate-800'>
                         <span className='font-semibold text-black'>
@@ -112,8 +117,14 @@ export default function Listing() {
                         )}
                         
 
-                    </ul>
-
+                    </ul> 
+                    {currentUser && listing.userRef !== currentUser._id && (
+                        <div className=''>
+                            <button onClick={()=>setIsAdoptionModalOpen(true)} className='bg-red-700 text-white text-xl hover:opacity-80 rounded-lg px-20 py-2'> Adopt </button>
+                            <AdoptionModal isOpen={isAdoptionModalOpen} onClose={()=>setIsAdoptionModalOpen(false)} listing={listing}/>
+                        </div>
+                    )}
+                    
                 </div>
             </div>
         )}
