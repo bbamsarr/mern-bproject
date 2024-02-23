@@ -18,7 +18,7 @@ export const deleteListing = async (req, res, next) => {
     if (!listing)
         return next(errorHandler(404, 'Listing not found'));
 
-    if (req.user.id !== listing.userRef)
+    if (!req.user.isAdmin && req.user.id !== listing.userRef)
         return next(errorHandler(401, 'You can only delete your listings'));
 
     try {
@@ -127,3 +127,35 @@ export const getListings =  async (req, res, next) => {
     }
 
 };
+
+export const getAllListings = async (req, res, next) => {
+    try {
+        const listings = await Listing.find({});
+
+        if (!listings)
+            return next(errorHandler(404, 'Listings not found'));
+
+        if (!req.user.isAdmin)
+            return next(errorHandler(401, 'You dont have permission for this action'));
+
+        const totalListings = await Listing.countDocuments();
+
+        const listingsForAdoption = await Listing.countDocuments({
+            status: 'forAdoption'
+        });
+
+        const adoptedListings = await Listing.countDocuments({
+            status: 'adopted'
+        });
+
+        return res.status(200).json({
+            listings,
+            totalListings,
+            listingsForAdoption,
+            adoptedListings
+        });
+    } catch(error) {
+        next(error);
+    }
+
+}

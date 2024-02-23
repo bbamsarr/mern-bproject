@@ -32,11 +32,12 @@ export const updateUser = async (req, res, next) => {
 };
 
 export const deleteUser = async (req, res, next) => {
-    if (req.user.id !== req.params.id)
+    if (!req.user.isAdmin && req.user.id !== req.params.id)
         return next(errorHandler(401, 'You can delete only your account'));
     try {
         await User.findByIdAndDelete(req.params.id);
-        res.clearCookie('access_token');
+        if (!req.user.isAdmin)
+            res.clearCookie('access_token');
         res.status(200).json('User has been deleted');
     } catch (error) {
         next(error);
@@ -66,6 +67,42 @@ export const getUser = async (req, res, next) => {
             return next(errorHandler(404, 'User not found'));
         const {password: pass, ...rest } = user._doc;
         res.status(200).json(rest);
+    }
+    catch(error) {
+        next(error);
+    }
+};
+
+export const getUsers = async (req, res, next) => {
+    if (!req.user.isAdmin)
+        return next(errorHandler(401, 'Access denied!'));
+    try {
+        const users = await User.find();
+        const usersNoPw = users.map((user) => {
+            const { password, ...rest } = user._doc;
+            return rest;
+        });
+        
+        const totalUsers = await User.countDocuments();
+
+        const currentDate = new Date();
+        const firstDayThisMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+        const firstDayLastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth()-1, 1);
+
+        const newUsersLastMonth = await User.countDocuments({
+            createdAt: { $gte: firstDayLastMonth, $lt: firstDayThisMonth }
+        });
+
+        const newUsersThisMonth = await User.countDocuments({
+            createdAt: { $gte: firstDayThisMonth }
+        });
+
+        res.status(200).json({
+            users: usersNoPw,
+            totalUsers,
+            newUsersLastMonth,
+            newUsersThisMonth
+        });
     }
     catch(error) {
         next(error);

@@ -18,7 +18,7 @@ export default function About() {
           <div className='flex flex-col gap-6'>
             <div className='flex flex-col sm:flex-row gap-4'>
               <div className='flex flex-col gap-2'>
-                <div class="text-white text-3xl w-16 h-16 bg-custom-orange shadow-lg rounded-full flex items-center justify-center">
+                <div className="text-white text-3xl w-16 h-16 bg-custom-orange shadow-lg rounded-full flex items-center justify-center">
                   <FaDog></FaDog>
                 </div>
                 <p className=''>
@@ -28,7 +28,7 @@ export default function About() {
               </div>
 
               <div className='flex flex-col gap-2'>
-                <div class="text-white text-3xl w-16 h-16 bg-custom-orange shadow-lg rounded-full flex items-center justify-center">
+                <div className="text-white text-3xl w-16 h-16 bg-custom-orange shadow-lg rounded-full flex items-center justify-center">
                   <FaHeart></FaHeart>
                 </div>
                 <p className=''>
@@ -40,7 +40,7 @@ export default function About() {
 
             <div className='flex flex-col sm:flex-row gap-4'>
             <div className='flex flex-col gap-2'>
-              <div class="text-white text-3xl w-16 h-16 bg-custom-orange shadow-lg rounded-full flex items-center justify-center">
+              <div className="text-white text-3xl w-16 h-16 bg-custom-orange shadow-lg rounded-full flex items-center justify-center">
                 <FaHome></FaHome>
               </div>
               <p className=''>
@@ -50,7 +50,7 @@ export default function About() {
             </div>
 
             <div className='flex flex-col gap-2'>
-              <div class="text-white text-3xl w-16 h-16 bg-custom-orange shadow-lg rounded-full flex items-center justify-center">
+              <div className="text-white text-3xl w-16 h-16 bg-custom-orange shadow-lg rounded-full flex items-center justify-center">
                 <FaCat></FaCat>
               </div>
               <p className=''>

@@ -7,10 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'custom-lightblue': '#CFDBD9',
-        'custom-orange': '#ED8566',
+        'custom-lightblueold': '#CFDBD9',
+        'custom-lightblue': '#ffffff',
+        'custom-orange': '#023e8a',
         'custom-beige': '#F6F6F0',
-        'custom-darkblue': '#35545E',
+        'custom-darkblue': '#73605A',
+        'custom-darkblueold': '#35545E',
         'custom-mediumblue': '#A7B3B1',
       }
     },
