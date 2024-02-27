@@ -14,7 +14,16 @@ export default {
         'custom-darkblue': '#73605A',
         'custom-darkblueold': '#35545E',
         'custom-mediumblue': '#A7B3B1',
-      }
+        'custom-green':'#3c564b',
+        'custom-dark-beige': '#F0EBE1',
+
+
+        'custom-header-color': '#FFFFFF',
+        'custom-footer-color': '#73605A',
+        'custom-contrast-color': '#023E8A',
+        'custom-text-color': '#023E8A',
+        'custom-light-beige': '#F6F6F0',
+      },
     },
   },
   plugins: [],

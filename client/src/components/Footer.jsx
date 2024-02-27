@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 
 export default function Footer() {
   return (
-    <footer className='bg-custom-darkblue mt-10'>
+    <footer className='bg-custom-footer-color'>
 
-        <div className='flex flex-wrap items-center justify-evenly p-6 gap-4 text-white'>
+        <div className='flex flex-wrap items-center justify-evenly p-12 gap-4 text-white'>
             <Link to={'/'}>
-                <FaPaw className='text-3xl sm:text-5xl text-custom-white'/>
+                <FaPaw className='text-3xl sm:text-5xl text-white'/>
                 <h1 className='text-sm sm:text-xl font-semibold'>
                     <span className='text-white'> Web </span>
                     <span className='text-gray-300'> App </span>
@@ -48,7 +48,7 @@ export default function Footer() {
                     </a>
                 </li>
             </ul>
-            <p> © 2024 WebApp. All right reserved. </p>
+            <p className='text-center'> © 2024 WebApp. All right reserved. </p>
         </div> 
 
     </footer>

@@ -1,106 +1,72 @@
 import React from 'react';
-import { FaDog, FaCat, FaFish, FaDove, FaHeart, FaHome, FaPaw } from 'react-icons/fa'
+import { FaDog, FaCat, FaFish, FaDove, FaHeart, FaHome, FaPaw } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+
+const fadeInAnimation = {
+  initial: { opacity: 0, y: 75 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function Information() {
   return (
-    <div className='py-24 px-3 max-w-6xl mx-auto'>
-      <div className='flex flex-col gap-6'>
+    <div className='max-w-6xl mx-auto mb-[80px] xl:mb-[160px]'>
 
-        {/* treci div - naslov slika tekst */}
-        <div className='flex flex-col sm:flex-row items-center gap-8 '>
-          <div className='flex-1 flex flex-col items-center gap-4'>
-              <FaPaw className='text-5xl text-custom-orange'></FaPaw>
-              <h3 className='text-center text-semibold text-3xl'> How to take care of your pet </h3>
+      <section className='mt-[80px] xl:mt-[100px] relative'>
+        <div className='container mx-auto'> 
+          <div className='flex flex-col items-center justify-center gap-12 text-center'>
+
+            <motion.div variants={fadeInAnimation} initial="initial" whileInView="visible" viewport={{once: true, amount: 0.1}} transition={{ duration: 1 }} className='flex flex-col items-center gap-4'>
+              <h1 className='text-4xl xl:text-6xl font-semibold text-custom-text-color'> Lorem ipsum </h1>
+              <div className='border-2 w-full'> </div>
+              <p className='p-2'>
+                Pharetra magna ac placerat vestibulum. Urna neque viverra justo nec. Id volutpat lacus laoreet non curabitur. 
+                Ultrices gravida dictum fusce ut placerat orci nulla pellen tesque dignissim. Ac tincidunt vitae semper quis.
+                Justo donec enim diam vulputate. Sed velit dignissim sodales ut eu sem integer vitae justo. Congue quisque 
+                egestas diam in arcu cursus. Nisl suscipit adipiscing bibendum est ultricies. Vitae aliquet nec ullamcorper sit 
+                amet risus.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInAnimation} initial="initial" whileInView="visible" viewport={{once: true, amount: 0.1}} transition={{ duration: 1.2, delay: 0.4 }} className='grid grid-col-1 sm:grid-cols-3 gap-4'>
+              <div className='max-w-[270px] sm:max-w-[320px] h-[250px] sm:h-[270px] overflow-hidden'>
+                <img src="https://images.unsplash.com/photo-1528301725143-1ba694832e77?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt='' className='h-full w-full object-cover sm:h-[270px] hover:scale-110 transition-all duration-500'/>
+              </div>
+              <div className='max-w-[270px] sm:max-w-[320px] h-[250px] sm:h-[270px] flex flex-col items-center justify-center border-2 p-2'>
+                <h3 className='text-xl font-semibold mb-4'> Sed do </h3>
+                <p className='text-center'>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                  Lorem ipsum adipiscing elit, sed do eiusmod tempor incidida.
+                </p>
+              </div>
+              <div className='max-w-[270px] sm:max-w-[320px] h-[250px] sm:h-[270px] overflow-hidden'>
+                <img src="https://images.unsplash.com/photo-1533514114760-4389f572ae26?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt='' className='h-full w-full object-cover sm:h-[270px] hover:scale-110 transition-all duration-500'/>
+              </div>
+
+              <div className='max-w-[270px] sm:max-w-[320px] h-[250px] sm:h-[270px] flex flex-col items-center justify-center border-2 p-2'>
+                <h3 className='text-xl font-semibold mb-4'> Tempor </h3>
+                <p className='text-center'>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                  Lorem ipsum dolor sit amet, consectetur.
+                </p>
+              </div>
+              <div className='max-w-[270px] sm:max-w-[320px] h-[250px] sm:h-[270px] overflow-hidden'>
+                <img src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt='' className='h-full w-full object-cover sm:h-[270px] hover:scale-110 transition-all duration-500'/>
+              </div>
+              <div className='max-w-[270px] sm:max-w-[320px] h-[250px] sm:h-[270px] flex flex-col items-center justify-center border-2 p-2'>
+                <h3 className='text-xl font-semibold mb-4'> Labore </h3>
+                <p className='text-center'>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </div>
+            </motion.div>
+
+
           </div>
 
-          <div className='flex-1'>
-            <img src="https://www.akc.org/wp-content/uploads/2021/07/Cavalier-King-Charles-Spaniel-laying-down-indoors.jpeg" alt="image" className='rounded-lg shadow-lg h-[220px] sm:h-[320px] w-[320px] sm:w-[420px] object-cover'/>
-          </div>
-
-          <div className='flex-1'>
-            <p className='text-justify'>
-              The best way to ensure that your pet gets the exercise they need is to make sure that they get enough
-              activity throughout the day. This can mean giving your pet toys and playing with them throughout the 
-              day, or it can mean getting a pet-sitter.
-            </p>
-          </div>
         </div>
+      </section>
 
-        {/* ovo je prvi div  tekst levo slika desno 
-        <div className='flex flex-col sm:flex-row items-center gap-8'>
-          <div className='flex-1 flex flex-col gap-4'>
-            <h1 className='flex flex-col font-semibold'>
-              <span className='text-custom-darkblue text-xl sm:text-3xl'> Welcome to the </span>
-              <span className='text-custom-orange text-3xl sm:text-5xl'> Pet Care Guide </span>
-            </h1>
-            <p className='text-justify'> Owning a pet is a rewarding experience that brings joy and companionship into your life.
-              However, it's essential to understand that pets rely on their owners for their well-being.
-              This guide aims to provide you with essential information on how to take care of your pet 
-              and ensure they live a healthy and happy life.
-            </p>
-          </div>
-
-          <div className='flex-1'>
-            <img src="https://www.shutterstock.com/image-photo/puppy-kittens-sleeping-600nw-205417123.jpg" alt="CatsAndDogs" className='rounded-lg h-[300px] w-[400px] object-contain'/>
-          </div>
-        </div> */}
-
-        {/* drugi div */}
-        <div className='flex flex-col gap-8 sm:gap-16 '>
-          <div className='flex flex-col sm:flex-row gap-8'>
-            <div>
-              <h1 className='font-semibold text-3xl text-center'> #01 </h1>
-              <h1 className='font-semibold text-2xl text-center'> Training </h1>
-              <p className='text-justify mt-2'> The best way to ensure that your pet gets the exercise they need is to make sure
-                that they  get enough activity throughout the day. This can mean giving your pet 
-                toys and playing with them throughout the day, or it can mean getting a pet-sitter
-                so that you can be sure your pet gets the exercise and company they need while you
-                are out.
-              </p>
-            </div> 
-
-            <div>
-              <h1 className='font-semibold text-3xl text-center'> #02 </h1>
-              <h1 className='font-semibold text-2xl text-center'> Training </h1>
-              <p className='text-justify mt-2'> The best way to ensure that your pet gets the exercise they need is to make sure
-                that they  get enough activity throughout the day. This can mean giving your pet 
-                toys and playing with them throughout the day, or it can mean getting a pet-sitter
-                so that you can be sure your pet gets the exercise and company they need while you
-                are out.
-              </p>
-            </div> 
-          </div>
-
-          <div className='flex flex-col sm:flex-row gap-8'>
-            <div>
-              <h1 className='font-semibold text-3xl text-center'> #03 </h1>
-              <h1 className='font-semibold text-2xl text-center'> Training </h1>
-              <p className='text-justify mt-2'> The best way to ensure that your pet gets the exercise they need is to make sure
-                that they  get enough activity throughout the day. This can mean giving your pet 
-                toys and playing with them throughout the day, or it can mean getting a pet-sitter
-                so that you can be sure your pet gets the exercise and company they need while you
-                are out.
-              </p>
-            </div> 
-
-            <div>
-              <h1 className='font-semibold text-3xl text-center'> #04 </h1>
-              <h1 className='font-semibold text-2xl text-center'> Training </h1>
-              <p className='text-justify mt-2'> The best way to ensure that your pet gets the exercise they need is to make sure
-                that they  get enough activity throughout the day. This can mean giving your pet 
-                toys and playing with them throughout the day, or it can mean getting a pet-sitter
-                so that you can be sure your pet gets the exercise and company they need while you
-                are out.
-              </p>
-            </div> 
-          </div>
-        </div>
-
-
-
-      </div>
     </div>
-
-   
   )
 }
