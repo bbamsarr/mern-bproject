@@ -22,6 +22,7 @@ export default {
         'custom-footer-color': '#73605A',
         'custom-contrast-color': '#023E8A',
         'custom-text-color': '#023E8A',
+        'custom-bg-color': '#FDF8EE',
         'custom-light-beige': '#F6F6F0',
       },
     },

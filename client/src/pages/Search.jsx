@@ -128,27 +128,27 @@ export default function Search() {
     };
 
   return (
-    <div className='flex flex-col md:flex-row'>
-        <div className='p-8 border-b-2 md:border-r-2 md:min-h-screen'>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
-                <div className='flex items-center gap-2'>
-                    <label className='whitespace-nowrap font-semibold'> Species: </label>
-                    <input value={sideData.searchTerm} onChange={handleChange} type="text" id='searchTerm' placeholder='Search...' className='border rounded-lg p-2 w-full'/>
+    <div className='flex flex-col sm:flex-row'>
+        <div className='px-4 py-8 border-b-2 sm:border-r-2 md:min-h-screen min-w-[320px]'>
+            <form onSubmit={handleSubmit} className='flex flex-col gap-8 xl:gap-6'>
+                <div className='flex flex-col gap-1 justify-center items-center'>
+                    <label className='font-semibold'> Species </label>
+                    <input value={sideData.searchTerm} onChange={handleChange} type="text" id='searchTerm' placeholder='Search...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
                 </div>
 
-                <div className='flex gap-2 flex-wrap items-center'>
-                    <label className='font-semibold'> Breed: </label>
-                    <input value={sideData.breed} onChange={handleChange} type="text" id='breed' className='border rounded-lg p-2' />
+                <div className='flex flex-col gap-1 justify-center items-center'>
+                    <label className='font-semibold'> Breed </label>
+                    <input value={sideData.breed} onChange={handleChange} type="text" id='breed' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
                 </div>
 
-                <div className='flex gap-2 flex-wrap items-center'>
-                    <label className='font-semibold'> Location: </label>
-                    <input value={sideData.location} onChange={handleChange} type="text" id='location' className='border rounded-lg p-2' />
+                <div className='flex flex-col gap-1 justify-center items-center'>
+                    <label className='font-semibold'> Location </label>
+                    <input value={sideData.location} onChange={handleChange} type="text" id='location' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
                 </div>
 
-                <div className='flex gap-2 flex-wrap items-center'>
-                    <label className='font-semibold'> Age: </label>
-                    <select onChange={handleChange} id='age' defaultValue={''} className='border rounded-lg p-2'>
+                <div className='flex flex-col gap-1 justify-center items-center'>
+                    <label className='font-semibold'> Age </label>
+                    <select onChange={handleChange} id='age' defaultValue={''} className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'>
                         <option value=""> Any </option>
                         <option value="young"> Young </option>
                         <option value="adult"> Adult </option>
@@ -157,9 +157,9 @@ export default function Search() {
                 </div>
 
 
-                <div className='flex gap-2 flex-wrap items-center'>
-                    <label className='font-semibold'> Size: </label>
-                    <select onChange={handleChange} id='size' defaultValue={''} className='border rounded-lg p-2'>
+                <div className='flex flex-col gap-1 justify-center items-center'>
+                    <label className='font-semibold'> Size </label>
+                    <select onChange={handleChange} id='size' defaultValue={''} className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'>
                         <option value=""> All </option>
                         <option value="small"> Small </option>
                         <option value="medium"> Medium </option>
@@ -167,50 +167,49 @@ export default function Search() {
                     </select>
                 </div>
 
-                <div className='flex gap-2 flex-wrap items-center'>
-                    <label className='font-semibold'> Gender: </label>
-                    <select onChange={handleChange} id='gender' defaultValue={''} className='border rounded-lg p-2'>
+                <div className='flex flex-col gap-1 justify-center items-center'>
+                    <label className='font-semibold'> Gender </label>
+                    <select onChange={handleChange} id='gender' defaultValue={''} className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'>
                         <option value=""> All </option>
                         <option value="male"> Male </option>
                         <option value="female"> Female </option>
                     </select>
                 </div>
 
-                <div className='flex gap-2 flex-wrap items-center'>
+                <div className='flex gap-2 justify-center items-center'>
                     <label className='font-semibold'> Vaccinated: </label>
-                    <div className='flex gap-2'>
+                    <div className='flex items-center'>
                         <input onChange={handleChange} checked={sideData.vaccinated} type='checkbox' id='vaccinated' className='rounded-lg w-5'/>
                     </div>
                 </div>
 
                 
-                <div className='flex gap-2 flex-wrap items-center'>
+                <div className='flex gap-2 justify-center items-center'>
                     <label className='font-semibold'> House-trained: </label>
-                    <div className='flex gap-2'>
+                    <div className='flex items-center'>
                         <input onChange={handleChange} checked={sideData.houseTrained} type='checkbox' id='houseTrained' className='rounded-lg w-5'/>
                     </div>
                 </div>
 
-                <div className='flex items-center gap-2'>
-                    <label className='font-semibold'> Sort by: </label>
-                    <select onChange={handleChange} defaultValue={'created_at_desc'} id='sort_order' className='border rounded-lg p-2'>
+                <div className='flex flex-col gap-1 justify-center items-center'>
+                    <label className='font-semibold'> Sort by </label>
+                    <select onChange={handleChange} defaultValue={'created_at_desc'} id='sort_order' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'>
                         <option value='createdAt_desc'> Latest </option> 
                         <option value='createdAt_asc'> Oldest </option>
                     </select>
                 </div>
 
-                <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>
+                <button className='bg-custom-green text-white p-3 rounded-lg shadow-lg uppercase hover:opacity-95'>
                     Search
                 </button>
 
             </form>
-
         </div>
 
 
         <div className='flex-1'>
-            <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'> Results: </h1>
-            <div className='p-8 flex flex-wrap gap-4'>
+            <h1 className='text-3xl font-semibold p-4 mt-4'> Available pets: </h1>
+            <div className='p-8 flex flex-wrap items-center justify-center gap-12'>
                 { !loading && listings.length === 0 && (
                     <p className='text-xl text-slate-700'> No results found! </p>
                 )}

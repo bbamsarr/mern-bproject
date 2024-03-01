@@ -14,15 +14,19 @@ import Footer from './components/Footer';
 import Information from './pages/Information';
 import AdminPrivateRoute from './components/AdminPrivateRoute';
 import AdminDashboard from './pages/AdminDashboard';
+import FAQ from './pages/FAQ';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop/>
       <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/information" element={<Information />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/search" element={<Search />} />
@@ -37,8 +41,7 @@ export default function App() {
         <Route element={<AdminPrivateRoute/>}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Route>
-
-
+        
       </Routes>
       <Footer/>
     </BrowserRouter>

@@ -20,7 +20,7 @@ export default function Footer() {
 
                 <Link to={'/about'}> About </Link>
 
-                <Link to={'/information'}> Information </Link>
+                <Link to={'/faq'}> FAQ </Link>
             </div>
         </div>
 

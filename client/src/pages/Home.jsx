@@ -96,7 +96,7 @@ export default function Home() {
                 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <Link to={'/information'} className='px-7 py-3 border border-black mx-auto lg:mx-0 rounded-lg hover:bg-black hover:text-white transition-all duration-500 ease-in-out'>
+              <Link to={'/faq'} className='px-7 py-3 border border-black mx-auto lg:mx-0 rounded-lg hover:bg-black hover:text-white transition-all duration-500 ease-in-out'>
                 FAQ
               </Link>
             </motion.div>

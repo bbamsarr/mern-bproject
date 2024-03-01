@@ -29,6 +29,9 @@ export default function OAuth() {
         }
     };
   return (
-    <button onClick={handleGoogleClick} type='button' className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>Continue with google</button>
+    <button onClick={handleGoogleClick} type='button' className='flex gap-2 items-center justify-center bg-white border-1 text-black rounded-lg p-3 uppercase hover:shadow-lg'>
+        <img src="https://user-images.githubusercontent.com/1770056/58111071-c2941c80-7bbe-11e9-8cac-1c3202dffb26.png" className='w-6 h-6'/> 
+        <h1> Sign in with Google </h1>
+    </button>
   )
 }
