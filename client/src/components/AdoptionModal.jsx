@@ -90,7 +90,7 @@ const Modal = ({isOpen, onClose, listing}) => {
     return null;
 
     return (
-        <div className='bg-gray-600 bg-opacity-50 fixed inset-0 flex justify-center items-center z-40'>
+        <div className='bg-gray-600 bg-opacity-50 fixed inset-0 flex justify-center items-center z-50'>
             <div className='bg-white p-4 rounded-lg shadow-lg w-full max-w-2xl mx-4 md:mx-0 max-h-[90vh] overflow-y-auto'>
                 <form onSubmit={onSubmit} className='flex flex-col items-center gap-4'>
                     <div className='flex flex-col items-center justify-center'>
