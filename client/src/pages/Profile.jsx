@@ -7,6 +7,7 @@ import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailur
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Modal from '../components/Modal';
+import { FaUser, FaFile, FaPlus, FaUserTie, FaArrowRight } from 'react-icons/fa';
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -23,6 +24,7 @@ export default function Profile() {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const dispatch = useDispatch();
+  const [activeTab, setActiveTab] = useState('profileSettings');
 
 
   useEffect(() => {
@@ -156,87 +158,149 @@ export default function Profile() {
   };
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'> Profile </h1>
+    <div className='min-h-screen flex flex-col md:flex-row bg-custom-bg-color'>
+      <div className='w-full md:w-64 bg-slate-700 p-6'>
+          <ul className='flex flex-col gap-4'>
 
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'> 
-        <input onChange={(e)=>setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*'/>
-        <img onClick={()=>fileRef.current.click()} src={formData.avatar || currentUser.avatar} alt="profile" className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2' />
-        
-        <p className='text-sm self-center'> 
-          {fileUploadError ? 
-          (<span className='text-red-700'> Error image upload (image must be less than 2MB ) </span>) : 
-          filePerc > 0 && filePerc < 100 ? (
-            <span className='text-slate-700'> { `Uploading ${filePerc}%` } </span> )
-            :
-            filePerc === 100 ? (
-              <span className='text-green-700'> Image successfully uploaded </span> )
-              :
-              ('')
-          }
-        </p>
+              <li>
+                  <button onClick={()=> {
+                    setActiveTab('pets');
+                    handleShowListings()
+                  }} 
+                  className='flex items-center gap-2 text-white text-lg'>
+                      <FaFile></FaFile>
+                      <span> Show my Pets </span>
+                  </button>
+              </li>
+              <li>
+                <div className='flex items-center gap-2 text-white text-lg'>
+                  <FaPlus></FaPlus>
+                  <Link className='' to={"/create-listing"}> Add new pet </Link>
+                </div>
+              </li>
 
-        <input type="text" placeholder='username' id='username' className='border p-3 rounded-lg' defaultValue={currentUser.username} onChange={handleChange}/>
-        <input type="email" placeholder='email' id='email' className='border p-3 rounded-lg' defaultValue={currentUser.email} onChange={handleChange}/>
-        <input type="password" placeholder='password' id='password' className='border p-3 rounded-lg' onChange={handleChange}/>
+              {/** ovaj deo je za admina */}
+              {
+                currentUser.isAdmin && (
+                  <li>
+                    <div className='flex items-center gap-2 text-white text-lg'>
+                      <FaUserTie></FaUserTie>
+                      <Link to={'/admin-dashboard'}>
+                        <button type='button' className=''> Admin dashboard </button>
+                      </Link>
+                    </div>
+                  </li>
+                )
+              }
 
-        <button disabled={loading} className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'> {loading ? 'Loading...' : 'Update'} </button>
-        <Link className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95' to={"/create-listing"}> Create Listing </Link>
+              <li>
+                  <button onClick={()=>setActiveTab('profileSettings')} className='flex items-center gap-2 text-white text-lg'>
+                      <FaUser> </FaUser>
+                      <span> Profile Settings </span>
+                  </button>
+              </li>
 
-        {/** ovaj deo je za admina */}
-        {
-          currentUser.isAdmin && (
-            <Link to={'/admin-dashboard'}>
-              <button type='button' className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 w-full'> Show admin dashboard </button>
-            </Link>
-          )
-        }
-      </form>
+              <li>
+                <button onClick={handleSignout} className='flex items-center gap-2 text-white text-lg'> 
+                  <FaArrowRight></FaArrowRight>
+                  <span> Sign out </span>
+                </button>
+              </li>
 
-      <div className='flex justify-between mt-5'>
-        <span onClick={openModal} className='text-red-700 cursor-pointer'> Delete account </span>
-        <Modal isOpen={isModalOpen} onClose={closeModal} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete account?"/>
-        <span onClick={handleSignout} className='text-red-700 cursor-pointer'> Sign out </span>
+          </ul>
       </div>
 
-      <p className='text-red-700 mt-5'> {error ? error : '' } </p> 
-      <p className='text-green-700 mt-5'> {updateSuccess ? 'Updated successfully!' : '' } </p> 
 
-      <button onClick={handleShowListings} className='text-green-700 w-full'> Show Listings </button>
-      <p className='text-red-700 mt-5'> {showListingsError ? 'Error showing listings' : '' } </p>
+      <div className='flex-1 xl:-translate-x-[64px]'>
 
+        { activeTab === 'profileSettings' && (
+          <div className='p-3 max-w-xl mx-auto'>
+            <h1 className='text-3xl font-semibold text-center my-7'> My Profile </h1>
 
-
-
-
-      {userListings && userListings.length > 0 && 
-      <div className='flex flex-col gap-4'> 
-        <h1 className='text-center mt-7 text-2xl font-semibold'> Your Listing </h1>
-        {userListings.map((listing) => (
-          <div key={listing._id} className='border rounded-lg p-3 flex justify-between items-center gap-4'>
-            <Link to={`/listing/${listing._id}`}>
-              <img src={listing.imageUrls[0]} alt='listing cover' className='h-16 w-16 object-contain rounded-lg'/>
-            </Link>
-
-            <Link className='text-slate-700 font-semibold hover:underline truncate flex-1' to={`/listing/${listing._id}`}>
-              <p> {listing.name} </p>
-            </Link>
-
-            <div className='flex flex-col items-center'> 
-              <button onClick={()=> handleListingDelete(listing._id)} className='text-red-700 uppercase'> Delete </button>
-
-              <Link to={`/update-listing/${listing._id}`}>
-                <button className='text-green-700 uppercase'> Edit </button>
-              </Link>
+            <form onSubmit={handleSubmit} className='flex flex-col gap-4'> 
+              <input onChange={(e)=>setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*'/>
+              <img onClick={()=>fileRef.current.click()} src={formData.avatar || currentUser.avatar} alt="profile" className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2' />
+                  
+              <p className='text-sm self-center'> 
+                {fileUploadError ? 
+                  (<span className='text-red-700'> Error image upload (image must be less than 2MB ) </span>) : 
+                  filePerc > 0 && filePerc < 100 ? (
+                    <span className='text-slate-700'> { `Uploading ${filePerc}%` } </span> )
+                    :
+                    filePerc === 100 ? (
+                    <span className='text-green-700'> Image successfully uploaded </span> )
+                  :
+                  ('')
+                }
+              </p>
+              <label className='font-semibold'>Username</label>
+              <input type="text" placeholder='username' id='username' className='border p-3 rounded-lg' defaultValue={currentUser.username} onChange={handleChange}/>
+              <label className='font-semibold'>Email</label>
+              <input type="email" placeholder='email' id='email' className='border p-3 rounded-lg' defaultValue={currentUser.email} onChange={handleChange}/>
+              <label className='font-semibold'>Password</label>
+              <input type="password" placeholder='password' id='password' className='border p-3 rounded-lg' onChange={handleChange}/>
+          
+              <button disabled={loading} className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'> {loading ? 'Loading...' : 'Update profile'} </button>
+              
+          
+            </form>
+          
+            <div className='flex justify-between mt-5'>
+              <span onClick={openModal} className='text-red-700 cursor-pointer'> Delete account </span>
+              <Modal isOpen={isModalOpen} onClose={closeModal} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete account?"/>
+              <span onClick={handleSignout} className='text-red-700 cursor-pointer'> Sign out </span>
             </div>
+          
+            <p className='text-red-700 mt-5'> {error ? error : '' } </p> 
+            <p className='text-green-700 mt-5'> {updateSuccess ? 'Updated successfully!' : '' } </p>
+          </div> 
 
+        )}
+
+        { activeTab === 'pets' && (
+          <div className='p-3 max-w-xl mx-auto'>
+            
+            <p className='text-red-700 mt-5'> {showListingsError ? 'Error showing listings' : '' } </p>
+
+            {userListings && userListings.length > 0 ? ( 
+              <div className='flex flex-col gap-4'> 
+                <h1 className='text-center mt-7 text-2xl font-semibold'> Pets </h1>
+                  {userListings.map((listing) => (
+                    <div key={listing._id} className='border rounded-lg p-3 flex justify-between items-center gap-4'>
+                      <Link to={`/listing/${listing._id}`}>
+                        <img src={listing.imageUrls[0]} alt='listing cover' className='h-16 w-16 object-contain rounded-lg'/>
+                      </Link>
+
+                      <Link className='text-slate-700 font-semibold hover:underline truncate flex-1' to={`/listing/${listing._id}`}>
+                        <p> {listing.name} </p>
+                      </Link>
+
+                      <div className='flex flex-col items-center'> 
+                        <button onClick={()=> handleListingDelete(listing._id)} className='text-red-700 uppercase'> Delete </button>
+
+                        <Link to={`/update-listing/${listing._id}`}>
+                          <button className='text-green-700 uppercase'> Edit </button>
+                        </Link>
+                      </div>
+
+                    </div>
+                  ))}
+
+                <p className='text-red-700 mt-5'> {deleteListingError ?  'Error deleting a list' : '' } </p> 
+              </div> 
+            ) : (
+              <div className=''>
+                <p className='text-xl font-semibold text-center'> Currently, there are no listings to show. </p>
+              </div>
+            )
+            }
           </div>
-        ))}
+        )}
 
-        <p className='text-red-700 mt-5'> {deleteListingError ?  'Error deleting a list' : '' } </p> 
-      </div> 
-      }
+      </div>
 
     </div>
+
+
   )
 }

@@ -14,7 +14,7 @@ export default {
         'custom-darkblue': '#73605A',
         'custom-darkblueold': '#35545E',
         'custom-mediumblue': '#A7B3B1',
-        'custom-green':'#3c564b',
+        'custom-green':'#31614D',
         'custom-dark-beige': '#F0EBE1',
 
 
@@ -22,7 +22,7 @@ export default {
         'custom-footer-color': '#73605A',
         'custom-contrast-color': '#023E8A',
         'custom-text-color': '#023E8A',
-        'custom-bg-color': '#FDF8EE',
+        'custom-bg-color': '#F6F5F2',
         'custom-light-beige': '#F6F6F0',
       },
     },

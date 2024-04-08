@@ -66,6 +66,7 @@ export default function AdminDashboard() {
             const data = await res.json();
             if (res.ok) {
                 setUsers((prev) => prev.filter((user) => user._id !== deleteUserID));
+                setTotalUsers(prevTotalUsers => prevTotalUsers - 1);
                 setIsModalOpen(false);
             }
             else {
@@ -85,6 +86,7 @@ export default function AdminDashboard() {
             const data = await res.json();
             if (res.ok) {
                 setListings((prev) => prev.filter((listing) => listing._id !== deleteListingID));
+                setTotalListings(prevTotalListings => prevTotalListings - 1);
                 setIsModalOpen(false);
             }
             else {
@@ -171,7 +173,7 @@ export default function AdminDashboard() {
                     </div>
             </div>
         )}
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete this user?"/>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete this?"/>
         
 
 
@@ -186,6 +188,7 @@ export default function AdminDashboard() {
                             <span className='text-xl'> Total pets </span>
                             <span className='text-2xl'> {totalListings} </span>
                         </div>
+                        {/** 
                         <div className='w-full flex flex-col items-center border-2 p-4 rounded-lg shadow-lg'>
                             <FaUserPlus className='text-3xl text-custom-darkblue'> </FaUserPlus>
                             <span className='text-xl'> For Adoption </span>
@@ -195,7 +198,7 @@ export default function AdminDashboard() {
                             <FaUserPlus className='text-3xl text-custom-darkblue'> </FaUserPlus>
                             <span className='text-xl'> Adopted </span>
                             <span className='text-2xl'> {adoptedListings} </span>
-                        </div>
+                        </div> */}
                     </div>
                     <div className='table-auto overflow-auto lg:mx-auto'>
                         {listings.length > 0 && (
@@ -207,7 +210,6 @@ export default function AdminDashboard() {
                                         <th className='p-3 text-left'> Species </th>
                                         <th className='p-3 text-left'> Breed </th>
                                         <th className='p-3 text-left'> Age </th>
-                                        <th className='p-3 text-left'> Status </th>
                                         <th className='p-3 text-left'> Delete </th>
                                     </tr>
                                 </thead>
@@ -232,9 +234,6 @@ export default function AdminDashboard() {
                                             {listing.age}
                                         </td>
                                         <td className='p-3'>
-                                            {listing.status}
-                                        </td>
-                                        <td className='p-3'>
                                             <span className='cursor-pointer text-red-500 hover:text-red-700' onClick={() => { setIsModalOpen(true); setDeleteListingID(listing._id);}}> Delete </span>
                                         </td>
                                     </tr>       
@@ -245,7 +244,7 @@ export default function AdminDashboard() {
                     </div>
                 </div>
         )}
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={handleDeleteListing} title="Delete Confirmation" message="Are you sure you want to delete this user?"/>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={handleDeleteListing} title="Delete Confirmation" message="Are you sure you want to delete this?"/>
        
 
 

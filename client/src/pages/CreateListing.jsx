@@ -136,8 +136,8 @@ export default function CreateListing() {
     };
 
   return (
-    <main className='min-h-screen p-3 max-w-4xl mx-auto'>
-        <h1 className='text-3xl font-semibold text-center my-7'> Create a listing </h1>
+    <main className='p-3 max-w-4xl mx-auto mb-[80px] xl:mb-[160px]'>
+        <h1 className='text-3xl font-semibold text-center my-7'> Add new pet </h1>
 
         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
             <div className='flex flex-col gap-4 flex-1'>
@@ -185,11 +185,11 @@ export default function CreateListing() {
                     <option value="male"> Male </option>
                     <option value="female"> Female </option>
                 </select>
-
+                {/*}
                 <select id='status' className='border p-3 rounded-lg' required onChange={handleChange} value={formData.status}>
                     <option value="forAdoption"> For adoption </option>
                     <option value="adopted"> Adopted </option>
-                </select>
+                </select> */}
 
             </div>
 
