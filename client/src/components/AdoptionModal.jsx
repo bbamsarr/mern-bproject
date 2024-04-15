@@ -94,8 +94,8 @@ const Modal = ({isOpen, onClose, listing}) => {
             <div className='bg-white p-4 rounded-lg shadow-lg w-full max-w-2xl mx-4 md:mx-0 max-h-[90vh] overflow-y-auto'>
                 <form onSubmit={onSubmit} className='flex flex-col items-center gap-4'>
                     <div className='flex flex-col items-center justify-center'>
-                        <FaHeart className='text-custom-orange text-3xl'> </FaHeart>
-                        <h1 className='text-2xl text-custom-darkblue text-semibold'>Pet Adoption Form</h1>
+                        <FaHeart className='text-red-700 text-3xl'> </FaHeart>
+                        <h1 className='text-2xl text-custom-text-color text-semibold'>Pet Adoption Form</h1>
                     </div>
 
                     <div className='flex flex-col w-full gap-2 '>
@@ -185,7 +185,7 @@ const Modal = ({isOpen, onClose, listing}) => {
                     <div className='flex  justify-center gap-20'>
                         <button className='bg-gray-300 hover:bg-gray-400 text-gray-800 px-7 py-2 rounded-lg' onClick={onClose}> Close </button>
                         {owner && ( 
-                            <Link to={`mailto:${owner.email}?subject=Regarding ${listing.name}&body=${dataForSending}`} className='bg-custom-darkblue text-white text-center px-7 py-2 rounded-lg hover:opacity-95'>
+                            <Link to={`mailto:${owner.email}?subject=Regarding ${listing.name}&body=${dataForSending}`} className='bg-custom-contrast-color text-white text-center px-7 py-2 rounded-lg hover:opacity-95'>
                                 Send 
                             </Link>
                         )}   

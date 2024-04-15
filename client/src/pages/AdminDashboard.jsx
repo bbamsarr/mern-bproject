@@ -99,7 +99,7 @@ export default function AdminDashboard() {
 
   return (
     <div className='min-h-screen flex flex-col md:flex-row  bg-gray-100'>
-        <div className='w-full md:w-64 bg-slate-700 p-6'>
+        <div className='w-full md:w-64 bg-custom-contrast-color p-6'>
             <ul className='flex flex-col gap-4'>
                 <li>
                     <button onClick={()=>setActiveTab('users')} className='flex items-center gap-2 text-white text-xl'>

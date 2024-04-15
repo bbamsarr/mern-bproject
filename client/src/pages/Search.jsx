@@ -133,17 +133,17 @@ export default function Search() {
             <form onSubmit={handleSubmit} className='flex flex-col gap-8 xl:gap-6'>
                 <div className='flex flex-col gap-1 justify-center items-center'>
                     <label className='font-semibold'> Species </label>
-                    <input value={sideData.searchTerm} onChange={handleChange} type="text" id='searchTerm' placeholder='Search...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
+                    <input value={sideData.searchTerm} onChange={handleChange} type="text" id='searchTerm' placeholder='Species...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
                 </div>
 
                 <div className='flex flex-col gap-1 justify-center items-center'>
                     <label className='font-semibold'> Breed </label>
-                    <input value={sideData.breed} onChange={handleChange} type="text" id='breed' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
+                    <input value={sideData.breed} onChange={handleChange} type="text" id='breed' placeholder='Breed...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
                 </div>
 
                 <div className='flex flex-col gap-1 justify-center items-center'>
                     <label className='font-semibold'> Location </label>
-                    <input value={sideData.location} onChange={handleChange} type="text" id='location' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
+                    <input value={sideData.location} onChange={handleChange} type="text" id='location' placeholder='Location...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
                 </div>
 
                 <div className='flex flex-col gap-1 justify-center items-center'>
@@ -199,7 +199,7 @@ export default function Search() {
                     </select>
                 </div>
 
-                <button className='bg-custom-green text-white p-3 rounded-lg shadow-lg uppercase hover:opacity-95'>
+                <button className='bg-custom-contrast-color text-white p-3 rounded-lg shadow-lg uppercase hover:opacity-95'>
                     Search
                 </button>
 
@@ -207,8 +207,8 @@ export default function Search() {
         </div>
 
 
-        <div className='flex-1'>
-            <h1 className='text-3xl font-semibold p-4 mt-4'> Available pets: </h1>
+        <div className='flex-1 mb-[80px] xl:mb-[160px]'>
+            <h1 className='text-custom-text-color text-3xl font-semibold p-4 mt-4'> Available pets: </h1>
             <div className='p-8 flex flex-wrap items-center justify-center gap-12'>
                 { !loading && listings.length === 0 && (
                     <p className='text-xl text-slate-700'> No results found! </p>

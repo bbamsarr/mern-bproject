@@ -159,7 +159,7 @@ export default function Profile() {
 
   return (
     <div className='min-h-screen flex flex-col md:flex-row bg-custom-bg-color'>
-      <div className='w-full md:w-64 bg-slate-700 p-6'>
+      <div className='w-full md:w-64 bg-custom-contrast-color p-6'>
           <ul className='flex flex-col gap-4'>
 
               <li>
@@ -215,7 +215,7 @@ export default function Profile() {
 
         { activeTab === 'profileSettings' && (
           <div className='p-3 max-w-xl mx-auto'>
-            <h1 className='text-3xl font-semibold text-center my-7'> My Profile </h1>
+            <h1 className='text-custom-text-color text-3xl font-semibold text-center my-7'> My Profile </h1>
 
             <form onSubmit={handleSubmit} className='flex flex-col gap-4'> 
               <input onChange={(e)=>setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*'/>
@@ -240,15 +240,15 @@ export default function Profile() {
               <label className='font-semibold'>Password</label>
               <input type="password" placeholder='password' id='password' className='border p-3 rounded-lg' onChange={handleChange}/>
           
-              <button disabled={loading} className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'> {loading ? 'Loading...' : 'Update profile'} </button>
+              <button disabled={loading} className='bg-custom-contrast-color text-white hover:opacity-95 rounded-lg p-3 uppercase disabled:opacity-80'> {loading ? 'Loading...' : 'Update profile'} </button>
               
           
             </form>
           
             <div className='flex justify-between mt-5'>
-              <span onClick={openModal} className='text-red-700 cursor-pointer'> Delete account </span>
+              <span onClick={openModal} className='text-red-700 cursor-pointer hover:underline'> Delete account </span>
               <Modal isOpen={isModalOpen} onClose={closeModal} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete account?"/>
-              <span onClick={handleSignout} className='text-red-700 cursor-pointer'> Sign out </span>
+              <span onClick={handleSignout} className='text-red-700 cursor-pointer hover:underline'> Sign out </span>
             </div>
           
             <p className='text-red-700 mt-5'> {error ? error : '' } </p> 
@@ -264,7 +264,7 @@ export default function Profile() {
 
             {userListings && userListings.length > 0 ? ( 
               <div className='flex flex-col gap-4'> 
-                <h1 className='text-center mt-7 text-2xl font-semibold'> Pets </h1>
+                <h1 className='text-custom-text-color text-center mt-7 text-2xl font-semibold'> Pets </h1>
                   {userListings.map((listing) => (
                     <div key={listing._id} className='border rounded-lg p-3 flex justify-between items-center gap-4'>
                       <Link to={`/listing/${listing._id}`}>
