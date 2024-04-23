@@ -65,7 +65,7 @@ const Modal = ({isOpen, onClose, listing}) => {
 
     };
     
-    const introText = "Here is the intro text";
+    const introText = "Hello! I am reaching out with genuine interest in adopting your pet. I am excited about the possibility of welcoming it into my family. Please find below my personal details.";
     const formatKey = (key) => {
         return key.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase());
     };

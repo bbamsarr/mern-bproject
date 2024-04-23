@@ -12,7 +12,8 @@ export default function AdminDashboard() {
     const [newUsersLastMonth, setNewUsersLastMonth] = useState(0);
     const [newUsersThisMonth, setNewUsersThisMonth] = useState(0);
     const [deleteUserID, setDeleteUserID] = useState('');
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpenUser, setIsModalOpenUser] = useState(false);
+    const [isModalOpenListing, setIsModalOpenListing] = useState(false);
     const [listings, setListings] = useState([]);
     const [totalListings, setTotalListings] = useState(0);
     const [deleteListingID, setDeleteListingID] = useState('');
@@ -67,7 +68,7 @@ export default function AdminDashboard() {
             if (res.ok) {
                 setUsers((prev) => prev.filter((user) => user._id !== deleteUserID));
                 setTotalUsers(prevTotalUsers => prevTotalUsers - 1);
-                setIsModalOpen(false);
+                setIsModalOpenUser(false);
             }
             else {
                 console.log(data.message);
@@ -87,7 +88,7 @@ export default function AdminDashboard() {
             if (res.ok) {
                 setListings((prev) => prev.filter((listing) => listing._id !== deleteListingID));
                 setTotalListings(prevTotalListings => prevTotalListings - 1);
-                setIsModalOpen(false);
+                setIsModalOpenListing(false);
             }
             else {
                 console.log(data.message);
@@ -163,7 +164,7 @@ export default function AdminDashboard() {
                                         {new Date(user.createdAt).toLocaleDateString()}
                                     </td>
                                     <td className='p-3'>
-                                        <span className='cursor-pointer text-red-500 hover:text-red-700' onClick={() => { setIsModalOpen(true); setDeleteUserID(user._id);}}> Delete </span>
+                                        <span className='cursor-pointer text-red-500 hover:text-red-700' onClick={() => { setIsModalOpenUser(true); setDeleteUserID(user._id);}}> Delete </span>
                                     </td>
                                 </tr>
                             ))}
@@ -173,7 +174,7 @@ export default function AdminDashboard() {
                     </div>
             </div>
         )}
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete this?"/>
+        <Modal isOpen={isModalOpenUser} onClose={() => setIsModalOpenUser(false)} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete this user?"/>
         
 
 
@@ -234,7 +235,7 @@ export default function AdminDashboard() {
                                             {listing.age}
                                         </td>
                                         <td className='p-3'>
-                                            <span className='cursor-pointer text-red-500 hover:text-red-700' onClick={() => { setIsModalOpen(true); setDeleteListingID(listing._id);}}> Delete </span>
+                                            <span className='cursor-pointer text-red-500 hover:text-red-700' onClick={() => { setIsModalOpenListing(true); setDeleteListingID(listing._id);}}> Delete </span>
                                         </td>
                                     </tr>       
                                 ))}
@@ -244,12 +245,12 @@ export default function AdminDashboard() {
                     </div>
                 </div>
         )}
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onConfirm={handleDeleteListing} title="Delete Confirmation" message="Are you sure you want to delete this?"/>
-       
-
+        <Modal isOpen={isModalOpenListing} onClose={() => setIsModalOpenListing(false)} onConfirm={handleDeleteListing} title="Delete Confirmation" message="Are you sure you want to delete this pet?"/>
+        
 
 
         
+
     </div>
   )
 }

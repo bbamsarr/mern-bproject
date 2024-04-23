@@ -247,7 +247,7 @@ export default function Profile() {
           
             <div className='flex justify-between mt-5'>
               <span onClick={openModal} className='text-red-700 cursor-pointer hover:underline'> Delete account </span>
-              <Modal isOpen={isModalOpen} onClose={closeModal} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete account?"/>
+              
               <span onClick={handleSignout} className='text-red-700 cursor-pointer hover:underline'> Sign out </span>
             </div>
           
@@ -275,7 +275,7 @@ export default function Profile() {
                         <p> {listing.name} </p>
                       </Link>
 
-                      <div className='flex flex-col items-center'> 
+                      <div className='flex gap-4 sm:gap-8 items-center'> 
                         <button onClick={()=> handleListingDelete(listing._id)} className='text-red-700 uppercase'> Delete </button>
 
                         <Link to={`/update-listing/${listing._id}`}>
@@ -290,7 +290,7 @@ export default function Profile() {
               </div> 
             ) : (
               <div className=''>
-                <p className='text-xl font-semibold text-center'> Currently, there are no listings to show. </p>
+                <p className='text-custom-text-color text-xl font-semibold text-center'> Currently, there are no results to show. </p>
               </div>
             )
             }
@@ -298,6 +298,7 @@ export default function Profile() {
         )}
 
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete account?"/>
 
     </div>
 

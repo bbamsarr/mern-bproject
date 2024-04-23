@@ -6,7 +6,7 @@ const Modal = ({isOpen, onClose, onConfirm, title, message}) => {
         return null;
 
     return (
-        <div className='bg-gray-600 bg-opacity-50 fixed inset-0 flex justify-center items-center z-40'>
+        <div className='bg-gray-600 bg-opacity-50 fixed inset-0 flex justify-center items-center z-50'>
             <div className='flex flex-col items-center gap-6 bg-white p-4 rounded-lg shadow-lg'>
                 <FaTrash className='text-red-700 text-3xl'> </FaTrash>
                 <h1 className='text-xl text-semibold'> {title} </h1>
