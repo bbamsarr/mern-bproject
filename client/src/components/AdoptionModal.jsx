@@ -62,10 +62,34 @@ const Modal = ({isOpen, onClose, listing}) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
+        try {
+            const res = await fetch('/api/email/sendEmail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    emailFrom: formData.email,
+                    emailTo: owner.email,
+                    regarding: listing.name,
+                })
+            });
+            const data = await res.json();
+            if (res.ok) {
+                alert('Email sent successfully!');
+                onClose();
+            } else {
+                throw new Error(data.message || 'Error while sending the email');
+            }
+        }
+        catch (error) {
+            console.log('Error:', error);
+        }
     };
     
-    const introText = "Hello! I am reaching out with genuine interest in adopting your pet. I am excited about the possibility of welcoming it into my family. Please find below my personal details.";
+    {/** 
+    const introText = "Hello! I am reaching out with genuine interest in adopting your pet. Please find below my personal details.";
     const formatKey = (key) => {
         return key.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase());
     };
@@ -84,7 +108,7 @@ const Modal = ({isOpen, onClose, listing}) => {
     let dataForSending = "";
     if (owner)
         dataForSending = formatDataForSending(formData, introText);
-                                
+    */}                  
 
     if(!isOpen)
     return null;
@@ -185,9 +209,9 @@ const Modal = ({isOpen, onClose, listing}) => {
                     <div className='flex  justify-center gap-20'>
                         <button className='bg-gray-300 hover:bg-gray-400 text-gray-800 px-7 py-2 rounded-lg' onClick={onClose}> Close </button>
                         {owner && ( 
-                            <Link to={`mailto:${owner.email}?subject=Regarding ${listing.name}&body=${dataForSending}`} className='bg-custom-contrast-color text-white text-center px-7 py-2 rounded-lg hover:opacity-95'>
+                            <button className='bg-custom-contrast-color text-white text-center px-7 py-2 rounded-lg hover:opacity-95'>
                                 Send 
-                            </Link>
+                            </button>
                         )}   
                     </div>
 
