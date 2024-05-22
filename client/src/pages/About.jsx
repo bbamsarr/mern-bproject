@@ -19,10 +19,9 @@ export default function About() {
         <motion.div variants={fadeInAnimationFromTop} initial="initial" animate="visible" transition={{duration:1}} className='flex flex-col gap-6 w-full lg:w-2/3'>
           <h1 className='text-3xl sm:text-5xl font-semibold text-custom-text-color'> Our mission </h1>
           <p className='text-justify'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur.
+            Pets offer us unconditional love, companionship and endless moments of joy. However, many pets find themselves abandoned or in shelters, waiting 
+            for someone to give them a chance. Our goal and mission is to make it easier for these pets to find their loving home. We believe that every pet 
+            deserves a safe, caring environment where they can thrive and bring joy to their owners.
           </p>
           <div className='border-t-4'></div>
 
@@ -33,8 +32,8 @@ export default function About() {
                   <FaDog></FaDog>
                 </div>
                 <p className='text-justify'>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidi dunt ut labore
-                  et dolore magna aliqua. 
+                  We provide an easy-to-use platform where potentional pet owners can search for adoptable pets. Our intuitive interface makes it simple to 
+                  find the perfect pet.
                 </p>
               </div>
 
@@ -43,8 +42,8 @@ export default function About() {
                   <FaHeart></FaHeart>
                 </div>
                 <p className='text-justify'>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidi dunt ut labore
-                  et dolore magna aliqua. 
+                  We offer information and guidance on pet care, ensuring responsible pet ownership to help new pet owners prepare for and enjoy life with their
+                  new friend.
                 </p>
               </div>
             </div>
@@ -55,8 +54,8 @@ export default function About() {
                 <FaHome></FaHome>
               </div>
               <p className='text-justify'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidi dunt ut labore
-                et dolore magna aliqua. 
+                We believe in treating all animals with kindness and respect, advocating for their well-being and happiness. Our commitment to care ensures every 
+                pet receives love they deserve.
               </p>
             </div>
 
@@ -65,8 +64,8 @@ export default function About() {
                 <FaCat></FaCat>
               </div>
               <p className='text-justify'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidi dunt ut labore
-                et dolore magna aliqua.
+                We collaborate with shelters and rescue organizations to increase the visibility of pets in need of finding their forever homes. By working together,
+                we make a difference.
               </p>
             </div>
             </div>
