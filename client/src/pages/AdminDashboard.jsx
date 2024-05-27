@@ -105,13 +105,13 @@ export default function AdminDashboard() {
                 <li>
                     <button onClick={()=>setActiveTab('users')} className='flex items-center gap-2 text-white text-xl'>
                         <FaUsers> </FaUsers>
-                        <span> Users </span>
+                        <span> Korisnici </span>
                     </button>
                 </li>
                 <li>
                     <button onClick={()=>setActiveTab('pets')} className='flex items-center gap-2 text-white text-xl'>
                         <FaFile></FaFile>
-                        <span> Pets </span>
+                        <span> Oglasi </span>
                     </button>
                 </li>
             </ul>
@@ -122,17 +122,17 @@ export default function AdminDashboard() {
                     <div className='flex flex-col sm:flex-row items-center justify-center gap-4 p-8'>
                         <div className='w-full flex flex-col items-center border-2 p-4 rounded-lg shadow-lg'>
                             <FaUsers className='text-3xl text-custom-darkblue'> </FaUsers>
-                            <span className='text-xl'> Total users </span>
+                            <span className='text-xl'> Korisnici </span>
                             <span className='text-2xl'> {totalUsers} </span>
                         </div>
                         <div className='w-full flex flex-col items-center border-2 p-4 rounded-lg shadow-lg'>
                             <FaUserPlus className='text-3xl text-custom-darkblue'> </FaUserPlus>
-                            <span className='text-xl'> + last month </span>
+                            <span className='text-xl'> + prošli mesec </span>
                             <span className='text-2xl'> {newUsersLastMonth} </span>
                         </div>
                         <div className='w-full  flex flex-col items-center border-2 p-4 rounded-lg shadow-lg'>
                             <FaUserPlus className='text-3xl text-custom-darkblue'> </FaUserPlus>
-                            <span className='text-xl'> + this month </span>
+                            <span className='text-xl'> + ovaj mesec </span>
                             <span className='text-2xl'> {newUsersThisMonth} </span>
                         </div>
                     </div>
@@ -141,11 +141,11 @@ export default function AdminDashboard() {
                         <table className='w-full rounded-lg shadow-lg'>
                             <thead>
                                 <tr className='bg-gray-200 border-b-2 border-gray-200'>
-                                    <th className='p-3 text-center'> Profile Image </th>
-                                    <th className='p-3 text-left'> Username </th>
+                                    <th className='p-3 text-center'> Profilna slika </th>
+                                    <th className='p-3 text-left'> Korisničko ime </th>
                                     <th className='p-3 text-left'> Email </th>
-                                    <th className='p-3 text-left'> Date created </th>
-                                    <th className='p-3 text-left'> Delete user </th>
+                                    <th className='p-3 text-left'> Datum kreiranja </th>
+                                    <th className='p-3 text-left'> Obriši </th>
                                 </tr>
                             </thead>
                             <tbody className='divide-y'>
@@ -164,7 +164,7 @@ export default function AdminDashboard() {
                                         {new Date(user.createdAt).toLocaleDateString()}
                                     </td>
                                     <td className='p-3'>
-                                        <span className='cursor-pointer text-red-500 hover:text-red-700' onClick={() => { setIsModalOpenUser(true); setDeleteUserID(user._id);}}> Delete </span>
+                                        <span className='cursor-pointer text-red-500 hover:text-red-700' onClick={() => { setIsModalOpenUser(true); setDeleteUserID(user._id);}}> Obriši </span>
                                     </td>
                                 </tr>
                             ))}
@@ -174,7 +174,7 @@ export default function AdminDashboard() {
                     </div>
             </div>
         )}
-        <Modal isOpen={isModalOpenUser} onClose={() => setIsModalOpenUser(false)} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete this user?"/>
+        <Modal isOpen={isModalOpenUser} onClose={() => setIsModalOpenUser(false)} onConfirm={handleDeleteUser} title="Potvrda brisanja" message="Da li ste sigurni da želite da obrišete ovog korisnika?"/>
         
 
 
@@ -186,7 +186,7 @@ export default function AdminDashboard() {
                     <div className='flex flex-col sm:flex-row items-center justify-center gap-4 p-8'>
                         <div className='w-full flex flex-col items-center border-2 p-4 rounded-lg shadow-lg'>
                             <FaUsers className='text-3xl text-custom-darkblue'> </FaUsers>
-                            <span className='text-xl'> Total pets </span>
+                            <span className='text-xl'> Ukupno ljubimaca </span>
                             <span className='text-2xl'> {totalListings} </span>
                         </div>
                         {/** 
@@ -206,12 +206,12 @@ export default function AdminDashboard() {
                             <table className='w-full rounded-lg shadow-lg'>
                                 <thead>
                                     <tr className='bg-gray-200 border-b-2 border-gray-200'>
-                                        <th className='p-3 text-center'> Image </th>
-                                        <th className='p-3 text-left'> Name </th>
-                                        <th className='p-3 text-left'> Species </th>
-                                        <th className='p-3 text-left'> Breed </th>
-                                        <th className='p-3 text-left'> Age </th>
-                                        <th className='p-3 text-left'> Delete </th>
+                                        <th className='p-3 text-center'> Slika ljubimca</th>
+                                        <th className='p-3 text-left'> Ime </th>
+                                        <th className='p-3 text-left'> Vrsta </th>
+                                        <th className='p-3 text-left'> Rasa </th>
+                                        <th className='p-3 text-left'> Starost </th>
+                                        <th className='p-3 text-left'> Obriši </th>
                                     </tr>
                                 </thead>
                                 <tbody className='divided-y'>
@@ -235,7 +235,7 @@ export default function AdminDashboard() {
                                             {listing.age}
                                         </td>
                                         <td className='p-3'>
-                                            <span className='cursor-pointer text-red-500 hover:text-red-700' onClick={() => { setIsModalOpenListing(true); setDeleteListingID(listing._id);}}> Delete </span>
+                                            <span className='cursor-pointer text-red-500 hover:text-red-700' onClick={() => { setIsModalOpenListing(true); setDeleteListingID(listing._id);}}> Obriši </span>
                                         </td>
                                     </tr>       
                                 ))}
@@ -245,7 +245,7 @@ export default function AdminDashboard() {
                     </div>
                 </div>
         )}
-        <Modal isOpen={isModalOpenListing} onClose={() => setIsModalOpenListing(false)} onConfirm={handleDeleteListing} title="Delete Confirmation" message="Are you sure you want to delete this pet?"/>
+        <Modal isOpen={isModalOpenListing} onClose={() => setIsModalOpenListing(false)} onConfirm={handleDeleteListing} title="Potvrda brisanja" message="Da li ste sigurni da želite da obrišete ovaj oglas?"/>
         
 
 

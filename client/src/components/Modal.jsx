@@ -12,8 +12,8 @@ const Modal = ({isOpen, onClose, onConfirm, title, message}) => {
                 <h1 className='text-xl text-semibold'> {title} </h1>
                 <p className='text-red-700'> {message} </p>
                 <div className='flex gap-12'>
-                    <button className='bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg' onClick={onClose}> Close </button>
-                    <button className='bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-lg' onClick={onConfirm}> Confirm </button>
+                    <button className='bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg' onClick={onClose}> Zatvori </button>
+                    <button className='bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-lg' onClick={onConfirm}> Potvrdi </button>
                 </div>
 
             </div>

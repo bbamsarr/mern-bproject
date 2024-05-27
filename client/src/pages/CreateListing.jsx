@@ -137,26 +137,26 @@ export default function CreateListing() {
 
   return (
     <main className='p-3 max-w-4xl mx-auto mb-[80px] xl:mb-[160px]'>
-        <h1 className='text-custom-contrast-color text-3xl font-semibold text-center my-7'> Add new pet </h1>
+        <h1 className='text-custom-contrast-color text-3xl font-semibold text-center my-7'> Kreiraj novi oglas </h1>
 
         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
             <div className='flex flex-col gap-4 flex-1'>
-                <input type="text" placeholder='Name' className='border p-3 rounded-lg' id='name' maxLength='30' minLength='2' required onChange={handleChange} value={formData.name}/>
+                <input type="text" placeholder='Ime' className='border p-3 rounded-lg' id='name' maxLength='30' minLength='2' required onChange={handleChange} value={formData.name}/>
                 
-                <input type="text" placeholder='Species' className='border p-3 rounded-lg' id='species' required onChange={handleChange} value={formData.species}/>
-                <input type="text" placeholder='Breed' className='border p-3 rounded-lg' id='breed' required onChange={handleChange} value={formData.breed}/>
+                <input type="text" placeholder='Vrsta' className='border p-3 rounded-lg' id='species' required onChange={handleChange} value={formData.species}/>
+                <input type="text" placeholder='Rasa' className='border p-3 rounded-lg' id='breed' required onChange={handleChange} value={formData.breed}/>
 
-                <textarea type="text" placeholder='Description' rows='5' className='border p-3 rounded-lg' id='description' required onChange={handleChange} value={formData.description}/>
-                <input type="text" placeholder='Location' className='border p-3 rounded-lg' id='location' required onChange={handleChange} value={formData.location}/>
+                <textarea type="text" placeholder='Opis' rows='5' className='border p-3 rounded-lg' id='description' required onChange={handleChange} value={formData.description}/>
+                <input type="text" placeholder='Lokacija' className='border p-3 rounded-lg' id='location' required onChange={handleChange} value={formData.location}/>
 
                 <div className='flex flex-wrap gap-4'>
                     <div className='flex flex-row gap-2'>
                         <input type='checkbox' id='vaccinated' className='w-5' onChange={handleChange} checked={formData.vaccinated}/>
-                        <span> Vaccinated </span>
+                        <span> Vakcinisan </span>
                     </div>
                     <div className='flex flex-row gap-2'>
                         <input type='checkbox' id='houseTrained' className='w-5' onChange={handleChange} checked={formData.houseTrained} />
-                        <span> House-trained </span>
+                        <span> Naučen na život u kući </span>
                     </div>
                 </div>
 
@@ -170,20 +170,20 @@ export default function CreateListing() {
                 </div> */ }
 
                 <select id='age' className='border p-3 rounded-lg' required onChange={handleChange} value={formData.age}>
-                    <option value="young"> Young </option>
-                    <option value="adult"> Adult </option>
-                    <option value="senior"> Senior </option>
+                    <option value="young"> Mladi </option>
+                    <option value="adult"> Odrasli </option>
+                    <option value="senior"> Stariji </option>
                 </select>
 
                 <select id='size' className='border p-3 rounded-lg' required onChange={handleChange} value={formData.size}>
-                    <option value="small"> Small </option>
-                    <option value="medium"> Medium </option>
-                    <option value="big"> Big </option>
+                    <option value="small"> Mali </option>
+                    <option value="medium"> Srednji </option>
+                    <option value="big"> Veliki </option>
                 </select>
 
                 <select id='gender' className='border p-3 rounded-lg' required onChange={handleChange} value={formData.gender}>
-                    <option value="male"> Male </option>
-                    <option value="female"> Female </option>
+                    <option value="male"> Mužjak </option>
+                    <option value="female"> Ženka </option>
                 </select>
                 {/*}
                 <select id='status' className='border p-3 rounded-lg' required onChange={handleChange} value={formData.status}>
@@ -194,14 +194,14 @@ export default function CreateListing() {
             </div>
 
             <div className='flex flex-col flex-1 gap-4'>
-                <p className='font-semibold '> Images: 
-                <span className='font-normal text-gray-700 ml-2'> Max 6 images </span>
+                <p className='font-semibold '> Slike: 
+                <span className='font-normal text-gray-700 ml-2'> Maksimalno 6 slika </span>
                 </p>
 
                 <div className='flex flex-row gap-4'>
                     <input onChange={(e) => setFiles(e.target.files)} type="file" id='images' accept='image/*' multiple className='p-3 border rounded-lg w-full' />
                     <button type='button' onClick={handleImageSubmit} disabled={uploading} className='p-3 text-custom-contrast-color border border-custom-contrast-color rounded-lg hover:bg-custom-contrast-color hover:text-white hover:shadow-lg transition duration-500 ease-in-out disabled:opacity-80'> 
-                        {uploading ? 'Uploading...' : 'Upload'} 
+                        {uploading ? 'Učitavanje...' : 'Otpremi'} 
                     </button>
                 </div>
                 <p className='text-red-700 text-sm'> {imageUploadError && imageUploadError} </p>
@@ -210,13 +210,13 @@ export default function CreateListing() {
                         <div key={url} className='flex justify-between p-3 border items-center'>
                             <img src={url} alt="listing image" className='w-20 h-20 object-contain rounded-lg' />
                             <button type='button' onClick={() => handleRemoveImage(index)} className='p-3 text-red-700 rounded-lg uppercase hover:opacity-75'> 
-                                Delete 
+                                Obriši 
                             </button>
                         </div>
                     ))
                 }
 
-                <button disabled={loading || uploading} className='p-3 bg-custom-contrast-color text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'> {loading ? 'Creating...' : 'Create'} </button>
+                <button disabled={loading || uploading} className='p-3 bg-custom-contrast-color text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'> {loading ? 'Kreiranje...' : 'Kreiraj'} </button>
                 { error && <p className='text-red-700 text-sm'> {error} </p> }
             </div>
 

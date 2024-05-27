@@ -59,22 +59,22 @@ export default function SignUp() {
       </div>
 
       <motion.div variants={fadeInAnimation} initial="initial" animate="visible" transition={{duration:1}} className='relative p-6 max-w-lg mx-auto rounded-[64px] border-1 m-20 shadow-lg'>
-        <h1 className='text-custom-darkblue text-3xl text-center font-semibold my-7'>Sign Up</h1>
+        <h1 className='text-custom-darkblue text-3xl text-center font-semibold my-7'>Registracija</h1>
         <form onSubmit = {handleSubmit} className='flex flex-col gap-4'>
-          <input type='text' placeholder='username' className='border p-3 rounded-lg focus:outline-none' id='username' onChange={handleChange} />
-          <input type='email' placeholder='email' className='border p-3 rounded-lg focus:outline-none' id='email' onChange={handleChange} />
-          <input type='password' placeholder='password' className='border p-3 rounded-lg focus:outline-none' id='password' onChange={handleChange} />
+          <input type='text' placeholder='Korisničko ime' className='border p-3 rounded-lg focus:outline-none' id='username' onChange={handleChange} />
+          <input type='email' placeholder='Email' className='border p-3 rounded-lg focus:outline-none' id='email' onChange={handleChange} />
+          <input type='password' placeholder='Lozinka' className='border p-3 rounded-lg focus:outline-none' id='password' onChange={handleChange} />
 
           <button disabled={loading} className= 'bg-custom-darkblue text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
-            {loading? 'Loading...' : 'Sign Up'} 
+            {loading? 'Učitavanje...' : 'Registrujte se'} 
           </button>
           <OAuth/>
         </form>
 
         <div className='flex gap-2 mt-5 mb-16'>
-          <p>Have an account?</p>
+          <p>Imate nalog?</p>
           <Link to={'/sign-in'}>
-            <span className='text-blue-700'>Sign in</span>
+            <span className='text-blue-700'>Prijavite se ovde</span>
           </Link>
         </div>
         {error && <p className='text-red-500 mt-5'> {error} </p>}

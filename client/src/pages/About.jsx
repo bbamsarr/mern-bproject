@@ -17,11 +17,11 @@ export default function About() {
     <div className='py-24 px-3 max-w-6xl mx-auto mb-[80px] xl:mb-[160px]'>
       <div className='flex flex-col lg:flex-row items-center gap-8'>
         <motion.div variants={fadeInAnimationFromTop} initial="initial" animate="visible" transition={{duration:1}} className='flex flex-col gap-6 w-full lg:w-2/3'>
-          <h1 className='text-3xl sm:text-5xl font-semibold text-custom-text-color'> Our mission </h1>
+          <h1 className='text-3xl sm:text-5xl font-semibold text-custom-text-color'> Naša misija </h1>
           <p className='text-justify'>
-            Pets offer us unconditional love, companionship and endless moments of joy. However, many pets find themselves abandoned or in shelters, waiting 
-            for someone to give them a chance. Our goal and mission is to make it easier for these pets to find their loving home. We believe that every pet 
-            deserves a safe, caring environment where they can thrive and bring joy to their owners.
+            Ljubimci nam pružaju bezuslovnu ljubav, druženje i beskrajne trenutke radosti. Međutim, mnogi ljubimci se nađu napušteni ili u azilima, čekajući 
+            nekoga da im pruži šansu i nov život. Naš cilj i misija je da olakšamo ovim ljubimcima da pronađu svoj dom pun ljubavi. Verujemo da svaki ljubimac 
+            zaslužuje sigurno, brižno okruženje gde može napredovati i donositi radost svojim vlasnicima.
           </p>
           <div className='border-t-4'></div>
 
@@ -32,8 +32,8 @@ export default function About() {
                   <FaDog></FaDog>
                 </div>
                 <p className='text-justify'>
-                  We provide an easy-to-use platform where potentional pet owners can search for adoptable pets. Our intuitive interface makes it simple to 
-                  find the perfect pet.
+                  Pružamo jednostavnu i pristupačnu platformu gde potencijalni vlasnici ljubimaca mogu pretraživati ljubimce za usvajanje. Naš intuitivni interfejs olakšava
+                  brzo pronalaženje savršenog ljubimca.
                 </p>
               </div>
 
@@ -42,8 +42,8 @@ export default function About() {
                   <FaHeart></FaHeart>
                 </div>
                 <p className='text-justify'>
-                  We offer information and guidance on pet care, ensuring responsible pet ownership to help new pet owners prepare for and enjoy life with their
-                  new friend.
+                  Pružamo informacije i savete o nezi ljubimaca, osiguravajući odgovorno vlasništvo kako bismo novim vlasnicima pomogli da se pripreme i uživaju
+                  u životu sa svojim novim ljubimcem.
                 </p>
               </div>
             </div>
@@ -54,8 +54,8 @@ export default function About() {
                 <FaHome></FaHome>
               </div>
               <p className='text-justify'>
-                We believe in treating all animals with kindness and respect, advocating for their well-being and happiness. Our commitment to care ensures every 
-                pet receives love they deserve.
+                Verujemo u dobrotu i poštovanje prema svim životinjama, zalažemo se za njihovu dobrobit i sreću. Naša posvećenost brizi osigurava da svaki ljubimac
+                dobije ljubav koju zaslužuje.
               </p>
             </div>
 
@@ -64,8 +64,8 @@ export default function About() {
                 <FaCat></FaCat>
               </div>
               <p className='text-justify'>
-                We collaborate with shelters and rescue organizations to increase the visibility of pets in need of finding their forever homes. By working together,
-                we make a difference.
+                Sarađujemo sa skloništima i organizacijama za spasavanje kako bismo značajno povećali vidljivost ljubmaca koji traže svoj stalni dom. Zajedno 
+                možemo napraviti razliku.
               </p>
             </div>
             </div>

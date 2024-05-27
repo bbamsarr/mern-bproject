@@ -10,15 +10,15 @@ export default function Footer() {
             <Link to={'/'}>
                 <FaPaw className='text-3xl sm:text-5xl text-white'/>
                 <h1 className='text-sm sm:text-xl font-semibold'>
-                    <span className='text-white'> Web </span>
-                    <span className='text-gray-300'> App </span>
+                    <span className='text-white'> Pet </span>
+                    <span className='text-gray-300'> Adopt </span>
                 </h1>
             </Link>
            
            <div className='flex flex-wrap gap-6'>
-                <Link to={'/'}> Home </Link>
+                <Link to={'/'}> Početna </Link>
 
-                <Link to={'/about'}> About </Link>
+                <Link to={'/about'}> O nama </Link>
 
                 <Link to={'/faq'}> FAQ </Link>
             </div>
@@ -48,7 +48,7 @@ export default function Footer() {
                     </a>
                 </li>
             </ul>
-            <p className='text-center'> © 2024 WebApp. All right reserved. </p>
+            <p className='text-center'> © 2024 PetAdopt. All rights reserved. </p>
         </div> 
 
     </footer>

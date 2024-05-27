@@ -14,8 +14,8 @@ function formatEmailBody(formData) {
     const entries = Object.entries(formData);
     const formattedEntries = entries.map(([key, value]) => `<p><strong>${formatKey(key)}:</strong> ${formatValue(value)}</p>`);
     return `<div>
-                <p> Hello! I am reaching out with genuine interest in adopting your pet. 
-                I am excited about the possibility of welcoming it into my family. Please find below my personal details.
+                <p> Zdravo! Javljam se sa iskrenim interesovanjem za usvajanje Vašeg ljubimca. 
+                Radujem se prilici da ga dočekam u svoju porodicu i dom. U nastavku Vam šaljem svoje lične podatke.
                 </p>
                 ${formattedEntries.join('')}
             </div>`;

@@ -44,8 +44,8 @@ export default function Listing() {
 
   return (
     <main>
-        {loading && <p className='text-center my-7 text-2xl'> Loading... </p>}
-        {error && <p className='text-center my-7 text-2xl'> Oops, something went wrong... </p>}
+        {loading && <p className='text-center my-7 text-2xl'> Učitavanje... </p>}
+        {error && <p className='text-center my-7 text-2xl'> Ups, nešto nije u redu... </p>}
         {listing && !loading && !error && (
             <div className='max-w-6xl mx-auto'>
                 <Swiper modules={[Pagination, EffectCoverflow, Autoplay]} 
@@ -102,7 +102,7 @@ export default function Listing() {
 
                     <p className='text-slate-800'>
                         <span className='font-semibold text-black'>
-                            Description: {' '}
+                            Opis: {' '}
                         </span>
                         {listing.description} 
                     </p>
@@ -117,12 +117,12 @@ export default function Listing() {
                             {listing.gender === 'male' ? (
                                 <>
                                     <FaMars className='text-lg'/>
-                                    <span> Male </span>
+                                    <span> Mužjak </span>
                                 </>
                             ) : (
                                 <>
                                     <FaVenus className='text-lg'/>
-                                    <span> Female </span>
+                                    <span> Ženka </span>
                                 </>
                             )
                             }
@@ -131,13 +131,13 @@ export default function Listing() {
                 
                         <li className='flex items-center gap-2 whitespace-nowrap '>
                             <FaSyringe className='text-lg'/>
-                            {listing.vaccinated ? 'Vaccinated' : 'Not vaccinated'} 
+                            {listing.vaccinated ? 'Vakcinisan' : 'Nije vakcinisan'} 
                         </li>
 
                         {listing.houseTrained && (
                             <li className='flex items-center gap-2 whitespace-nowrap'>
                                 <FaHome className='text-lg'/>
-                                <span> House-trained</span>
+                                <span> Naučen na život u kući </span>
                             </li>
                         )}
                         
@@ -145,7 +145,7 @@ export default function Listing() {
                     </ul> 
                     {currentUser && listing.userRef !== currentUser._id && (
                         <div className=''>
-                            <button onClick={()=>setIsAdoptionModalOpen(true)} className='bg-red-700 text-white text-xl hover:opacity-80 rounded-lg px-20 py-2'> Adopt </button>
+                            <button onClick={()=>setIsAdoptionModalOpen(true)} className='bg-red-700 text-white text-xl hover:opacity-80 rounded-lg px-20 py-2'> Udomi </button>
                             <AdoptionModal isOpen={isAdoptionModalOpen} onClose={()=>setIsAdoptionModalOpen(false)} listing={listing}/>
                         </div>
                     )}

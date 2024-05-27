@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaHeart } from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 
 const Modal = ({isOpen, onClose, listing}) => {
     const [owner, setOwner] = useState(null);
@@ -60,16 +60,51 @@ const Modal = ({isOpen, onClose, listing}) => {
         }
     }
 
+    const translatedFormData = (data) => {
+        const translated = {
+            fullName: 'Puno ime',
+            email: 'Email',
+            address: 'Adresa',
+            phoneNumber: 'Broj telefona',
+            housing: 'Tip stanovanja',
+            yard: 'Dvorište',
+            adultsInTheHousehold: 'Odrasli u domaćinstvu',
+            kidsInTheHousehold: 'Deca u domaćinstvu',
+            otherPets: 'Drugi kućni ljubimci',
+            otherPetsDescription: 'Opis drugih ljubimaca',
+            whereWillPetSleep: 'Gde će ljubimac spavati',
+            hoursAlone: 'Broj sati koje će biti sam',
+            agreementToProvideRegularHealthCare: 'Sporazum o redovnoj zdravstvenoj zaštiti',
+            agreementToSpayThePet: 'Sporazum o sterilizaciji ljubimca',
+            yes: 'da',
+            no: 'ne',
+            house: 'kuca',
+            apartment: 'stan',
+        };
+        return Object.keys(data).reduce((acc, key) => {
+            const value = data[key];
+            if (typeof value === 'boolean') {
+                acc[translated[key] || key] = value ? translated.yes : translated.no;
+            } else if (key === 'housing' && (value === 'house' || value === 'apartment')) {
+                acc[translated[key] || key] = translated[value];
+            } else {
+                acc[translated[key] || key] = value;
+            }
+            return acc;
+        }, {}); 
+    }
+
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
+            const translatedData = translatedFormData(formData);
             const res = await fetch('/api/email/sendEmail', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    ...formData,
+                    ...translatedData,
                     emailFrom: formData.email,
                     emailTo: owner.email,
                     regarding: listing.name,
@@ -77,10 +112,10 @@ const Modal = ({isOpen, onClose, listing}) => {
             });
             const data = await res.json();
             if (res.ok) {
-                alert('Email sent successfully!');
+                alert('Email uspešno poslat!');
                 onClose();
             } else {
-                throw new Error(data.message || 'Error while sending the email');
+                throw new Error(data.message || 'Greška pri slanju email-a');
             }
         }
         catch (error) {
@@ -119,81 +154,81 @@ const Modal = ({isOpen, onClose, listing}) => {
                 <form onSubmit={onSubmit} className='flex flex-col items-center gap-4'>
                     <div className='flex flex-col items-center justify-center'>
                         <FaHeart className='text-red-700 text-3xl'> </FaHeart>
-                        <h1 className='text-2xl text-custom-text-color text-semibold'>Pet Adoption Form</h1>
+                        <h1 className='text-2xl text-custom-text-color text-semibold'>Formular za usvajanje ljubimca</h1>
                     </div>
 
                     <div className='flex flex-col w-full gap-2 '>
-                        <h2 className='text-semibold text-custom-orange text-xl'> Personal information </h2>
+                        <h2 className='text-semibold text-custom-orange text-xl'> Lični podaci </h2>
                         <div className='border-b-2 border-custom-orange'></div>
-                        <input type="text" id="fullName" placeholder='Full Name' className='border p-3 rounded-lg' onChange={handleChange} value={formData.fullName}/>
-                        <input type="text" id="address" placeholder='Address' className='border p-3 rounded-lg' onChange={handleChange} value={formData.address}/>
+                        <input type="text" id="fullName" placeholder='Puno ime' className='border p-3 rounded-lg' onChange={handleChange} value={formData.fullName}/>
+                        <input type="text" id="address" placeholder='Adresa' className='border p-3 rounded-lg' onChange={handleChange} value={formData.address}/>
                         <div className='flex flex-col md:flex-row gap-2'>
-                            <input type="text" id="phoneNumber" placeholder='Phone Number' className='border p-3 rounded-lg' onChange={handleChange} value={formData.phoneNumber}/>
+                            <input type="text" id="phoneNumber" placeholder='Broj telefona' className='border p-3 rounded-lg' onChange={handleChange} value={formData.phoneNumber}/>
                             <input type="text" id="email" placeholder='Email' className='border p-3 rounded-lg w-full' onChange={handleChange} value={formData.email}/>
                         </div>
                     </div>
 
                     <div className='flex flex-col w-full gap-2'>
-                        <h2 className='text-semibold text-custom-darkblue text-xl'> Household information </h2>
+                        <h2 className='text-semibold text-custom-darkblue text-xl'> Podaci o domaćinstvu </h2>
                         <div className='border-b-2 border-custom-darkblue'></div>
 
-                        <label> What type of housing do you live in? </label>
+                        <label> Koji tip stanovanja imate? </label>
                         <div className='flex gap-2'>
                             <input type='radio' id='house' name='housing' value='house' className='w-5' onChange={handleChange} checked={formData.housing === 'house'}/>
-                            <label> House </label>
+                            <label> Kuća </label>
                             <input type='radio' id='apartment' name='housing' value='apartment' className='w-5' onChange={handleChange} checked={formData.housing === 'apartment'}/>
-                            <label> Apartment </label>
+                            <label> Stan </label>
                         </div>
                         
                         <div className='flex gap-2'>
-                            <label> Do you have a yard? </label>
+                            <label> Da li imate dvorište? </label>
                             <input type='checkbox' id='yard' className='w-5' onChange={handleChange} checked={formData.yard}/>
-                            <label> Yes </label>
+                            <label> Da </label>
                         </div>
 
                         <div className='flex flex-col gap-2'>
                             <div className='flex items-center gap-2'>
-                                <label> Adults in the household: </label>
+                                <label> Broj odraslih u domaćinstvu: </label>
                                 <input type='number' id='adultsInTheHousehold' min='1' max='20' className='border p-3 rounded-lg w-16' onChange={handleChange} value={formData.adultsInTheHousehold}/>
                             </div>
                             <div className='flex items-center gap-2'>
-                                <label> Kids in the household: </label>
+                                <label> Broj dece u domaćinstvu: </label>
                                 <input type='number' id='kidsInTheHousehold' min='0' max='20' className='border p-3 rounded-lg w-16' onChange={handleChange} value={formData.kidsInTheHousehold}/>
                             </div>
                         </div>
                     </div>
 
                     <div className='flex flex-col w-full gap-2'>
-                        <h2 className='text-semibold text-custom-orange text-xl'> Other pets and lifestyle </h2>
+                        <h2 className='text-semibold text-custom-orange text-xl'> Ostali ljubimci i stil života </h2>
                         <div className='border-b-2 border-custom-orange'></div>
                         <div className='flex gap-2'>
-                            <label> Do you have other pets? </label>
+                            <label> Da li imate druge ljubimce? </label>
                             <input type='checkbox' id='otherPets' className='w-5' onChange={handleChange} checked={formData.otherPets}/>
-                            <label> Yes </label>
+                            <label> Da </label>
                         </div>
                         {formData.otherPets && (
                             <div className='flex flex-col gap-2'>
-                                <label> Please provide description</label>
-                                <textarea type="text" placeholder='Description' className='border p-3 rounded-lg' id='otherPetsDescription' onChange={handleChange} value={formData.otherPetsDescription}/>
+                                <label> Molimo Vas da date opis </label>
+                                <textarea type="text" placeholder='Opis' className='border p-3 rounded-lg' id='otherPetsDescription' onChange={handleChange} value={formData.otherPetsDescription}/>
                             </div>
                         )}
                         <div className='flex items-center gap-2'>
-                            <label> Where will the pet sleep: </label>
+                            <label> Gde će ljubimac spavati: </label>
                             <input type='text' id='whereWillPetSleep' className='border p-3 rounded-lg' onChange={handleChange} value={formData.whereWillPetSleep}/>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <label> How many hours will the pet be alone: </label>
+                            <label> Koliko sati će ljubimac biti sam: </label>
                             <input type='number' id='hoursAlone' min='0' max='24' className='border p-3 rounded-lg w-16' onChange={handleChange} value={formData.hoursAlone}/>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <label> Do you agree to provide regular health care: </label>
+                            <label> Da li ćete obezbediti redovnu zdravstvenu zaštitu: </label>
                             <input type='checkbox' id='agreementToProvideRegularHealthCare' className='w-5' onChange={handleChange} checked={formData.agreementToProvideRegularHealthCare}/>
-                            <label> Yes </label>
+                            <label> Da </label>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <label> Do you agree to spay/neuter the pet (if not already done): </label>
+                            <label> Da li ćete sterilizovati ljubimca (ako to već nije urađeno): </label>
                             <input type='checkbox' id='agreementToSpayThePet' className='w-5' onChange={handleChange} checked={formData.agreementToSpayThePet}/>
-                            <label> Yes </label>
+                            <label> Da </label>
                         </div>
                     </div>
 
@@ -207,10 +242,10 @@ const Modal = ({isOpen, onClose, listing}) => {
                     )}*/}
 
                     <div className='flex  justify-center gap-20'>
-                        <button className='bg-gray-300 hover:bg-gray-400 text-gray-800 px-7 py-2 rounded-lg' onClick={onClose}> Close </button>
+                        <button className='bg-gray-300 hover:bg-gray-400 text-gray-800 px-7 py-2 rounded-lg' onClick={onClose}> Zatvori </button>
                         {owner && ( 
                             <button className='bg-custom-contrast-color text-white text-center px-7 py-2 rounded-lg hover:opacity-95'>
-                                Send 
+                                Pošalji 
                             </button>
                         )}   
                     </div>

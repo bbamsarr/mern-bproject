@@ -132,52 +132,52 @@ export default function Search() {
         <div className='px-4 py-8 border-b-2 sm:border-r-2 md:min-h-screen min-w-[320px]'>
             <form onSubmit={handleSubmit} className='flex flex-col gap-8 xl:gap-6'>
                 <div className='flex flex-col gap-1 justify-center items-center'>
-                    <label className='font-semibold'> Species </label>
-                    <input value={sideData.searchTerm} onChange={handleChange} type="text" id='searchTerm' placeholder='Species...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
+                    <label className='font-semibold'> Vrsta </label>
+                    <input value={sideData.searchTerm} onChange={handleChange} type="text" id='searchTerm' placeholder='Vrsta...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
                 </div>
 
                 <div className='flex flex-col gap-1 justify-center items-center'>
-                    <label className='font-semibold'> Breed </label>
-                    <input value={sideData.breed} onChange={handleChange} type="text" id='breed' placeholder='Breed...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
+                    <label className='font-semibold'> Rasa </label>
+                    <input value={sideData.breed} onChange={handleChange} type="text" id='breed' placeholder='Rasa...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
                 </div>
 
                 <div className='flex flex-col gap-1 justify-center items-center'>
-                    <label className='font-semibold'> Location </label>
-                    <input value={sideData.location} onChange={handleChange} type="text" id='location' placeholder='Location...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
+                    <label className='font-semibold'> Lokacija </label>
+                    <input value={sideData.location} onChange={handleChange} type="text" id='location' placeholder='Lokacija...' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'/>
                 </div>
 
                 <div className='flex flex-col gap-1 justify-center items-center'>
-                    <label className='font-semibold'> Age </label>
+                    <label className='font-semibold'> Starost </label>
                     <select onChange={handleChange} id='age' defaultValue={''} className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'>
-                        <option value=""> Any </option>
-                        <option value="young"> Young </option>
-                        <option value="adult"> Adult </option>
-                        <option value="senior"> Senior </option>
+                        <option value=""> Bilo koji </option>
+                        <option value="young"> Mladi </option>
+                        <option value="adult"> Odrasli </option>
+                        <option value="senior"> Stariji </option>
                     </select>
                 </div>
 
 
                 <div className='flex flex-col gap-1 justify-center items-center'>
-                    <label className='font-semibold'> Size </label>
+                    <label className='font-semibold'> Veličina </label>
                     <select onChange={handleChange} id='size' defaultValue={''} className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'>
-                        <option value=""> All </option>
-                        <option value="small"> Small </option>
-                        <option value="medium"> Medium </option>
-                        <option value="big"> Big </option>
+                        <option value=""> Bilo koji </option>
+                        <option value="small"> Mali </option>
+                        <option value="medium"> Srednji </option>
+                        <option value="big"> Veliki </option>
                     </select>
                 </div>
 
                 <div className='flex flex-col gap-1 justify-center items-center'>
-                    <label className='font-semibold'> Gender </label>
+                    <label className='font-semibold'> Pol </label>
                     <select onChange={handleChange} id='gender' defaultValue={''} className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'>
-                        <option value=""> All </option>
-                        <option value="male"> Male </option>
-                        <option value="female"> Female </option>
+                        <option value=""> Bilo koji </option>
+                        <option value="male"> Mužjak </option>
+                        <option value="female"> Ženka </option>
                     </select>
                 </div>
 
                 <div className='flex gap-2 justify-center items-center'>
-                    <label className='font-semibold'> Vaccinated: </label>
+                    <label className='font-semibold'> Vakcinisan: </label>
                     <div className='flex items-center'>
                         <input onChange={handleChange} checked={sideData.vaccinated} type='checkbox' id='vaccinated' className='rounded-lg w-5'/>
                     </div>
@@ -185,22 +185,22 @@ export default function Search() {
 
                 
                 <div className='flex gap-2 justify-center items-center'>
-                    <label className='font-semibold'> House-trained: </label>
+                    <label className='font-semibold'> Naučen na život u kući: </label>
                     <div className='flex items-center'>
                         <input onChange={handleChange} checked={sideData.houseTrained} type='checkbox' id='houseTrained' className='rounded-lg w-5'/>
                     </div>
                 </div>
 
                 <div className='flex flex-col gap-1 justify-center items-center'>
-                    <label className='font-semibold'> Sort by </label>
+                    <label className='font-semibold'> Sortiraj </label>
                     <select onChange={handleChange} defaultValue={'created_at_desc'} id='sort_order' className='border rounded-lg shadow-sm p-2 w-full focus:outline-none'>
-                        <option value='createdAt_desc'> Latest </option> 
-                        <option value='createdAt_asc'> Oldest </option>
+                        <option value='createdAt_desc'> Najnoviji </option> 
+                        <option value='createdAt_asc'> Najstariji </option>
                     </select>
                 </div>
 
                 <button className='bg-custom-contrast-color text-white p-3 rounded-lg shadow-lg uppercase hover:opacity-95'>
-                    Search
+                    Pretraga
                 </button>
 
             </form>
@@ -208,13 +208,13 @@ export default function Search() {
 
 
         <div className='flex-1 mb-[80px] xl:mb-[160px]'>
-            <h1 className='text-custom-text-color text-3xl font-semibold p-4 mt-4'> Available pets: </h1>
+            <h1 className='text-custom-text-color text-3xl font-semibold p-4 mt-4'> Dostupni ljubimci: </h1>
             <div className='p-8 flex flex-wrap items-center justify-center gap-12'>
                 { !loading && listings.length === 0 && (
-                    <p className='text-xl text-slate-700'> No results found! </p>
+                    <p className='text-xl text-slate-700'> Nije pronađen ni jedan rezultat! </p>
                 )}
                 { loading && (
-                    <p className='text-xl text-slate-700 text-center w-full'> Loading... </p>
+                    <p className='text-xl text-slate-700 text-center w-full'> Učitavanje... </p>
                 )}
 
                 {
@@ -225,7 +225,7 @@ export default function Search() {
 
                 {showMore && (
                     <button  className='text-green-700 hover:underline p-7 text-center w-full' onClick={onShowMoreClick}>
-                        Show more
+                        Prikaži više
                     </button>
                 )}
 

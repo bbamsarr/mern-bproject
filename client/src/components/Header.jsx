@@ -73,7 +73,7 @@ export default function Header() {
         setMenuOpen(!menuOpen);
     }
 
-    {/* OVO MORA DA SE PROVERI I ISPITA VISE PUTA - NEMAM POJMA KAKO RADI ALI RADI */}
+    
     return (
         <header className='sticky top-0 bg-custom-header-color shadow-lg z-50'>
             <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
@@ -124,13 +124,13 @@ export default function Header() {
                     <button onClick={toggleMenu} className='lg:hidden ml-auto flex items-center'> X </button>
                     
                     <Link to='/'>
-                        <div className='text-custom-text-color hover:underline p-2'>Home</div>
+                        <div className='text-custom-text-color hover:underline p-2'>Početna</div>
                     </Link>
                     <Link to='/about'>
-                        <div className='text-custom-text-color hover:underline p-2'>About</div>
+                        <div className='text-custom-text-color hover:underline p-2'>O nama</div>
                     </Link>
                     <Link to='/information'>
-                        <div className='text-custom-text-color hover:underline p-2'>Information</div>
+                        <div className='text-custom-text-color hover:underline p-2'>Informacije</div>
                     </Link>
                     <Link to='/profile'>
                         {currentUser ? (
@@ -140,7 +140,7 @@ export default function Header() {
                             alt='profile'
                         />
                         ) : (
-                        <div className='text-custom-text-color hover:underline p-2'>Sign in</div>
+                        <div className='text-custom-text-color hover:underline p-2'>Prijavite se</div>
                         )}
                     </Link>
                 </nav>

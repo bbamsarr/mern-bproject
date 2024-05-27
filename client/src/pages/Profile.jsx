@@ -169,13 +169,13 @@ export default function Profile() {
                   }} 
                   className='flex items-center gap-2 text-white text-lg'>
                       <FaFile></FaFile>
-                      <span> Show my Pets </span>
+                      <span> Prikaži moje oglase </span>
                   </button>
               </li>
               <li>
                 <div className='flex items-center gap-2 text-white text-lg'>
                   <FaPlus></FaPlus>
-                  <Link className='' to={"/create-listing"}> Add new pet </Link>
+                  <Link className='' to={"/create-listing"}> Dodaj novi oglas </Link>
                 </div>
               </li>
 
@@ -196,14 +196,14 @@ export default function Profile() {
               <li>
                   <button onClick={()=>setActiveTab('profileSettings')} className='flex items-center gap-2 text-white text-lg'>
                       <FaUser> </FaUser>
-                      <span> Profile Settings </span>
+                      <span> Podešavanje profila </span>
                   </button>
               </li>
 
               <li>
                 <button onClick={handleSignout} className='flex items-center gap-2 text-white text-lg'> 
                   <FaArrowRight></FaArrowRight>
-                  <span> Sign out </span>
+                  <span> Odjavite se </span>
                 </button>
               </li>
 
@@ -215,7 +215,7 @@ export default function Profile() {
 
         { activeTab === 'profileSettings' && (
           <div className='p-3 max-w-xl mx-auto'>
-            <h1 className='text-custom-text-color text-3xl font-semibold text-center my-7'> My Profile </h1>
+            <h1 className='text-custom-text-color text-3xl font-semibold text-center my-7'> Moj profil </h1>
 
             <form onSubmit={handleSubmit} className='flex flex-col gap-4'> 
               <input onChange={(e)=>setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*'/>
@@ -223,36 +223,36 @@ export default function Profile() {
                   
               <p className='text-sm self-center'> 
                 {fileUploadError ? 
-                  (<span className='text-red-700'> Error image upload (image must be less than 2MB ) </span>) : 
+                  (<span className='text-red-700'> Greška pri učitavanju slike (slika mora biti manja od 2MB ) </span>) : 
                   filePerc > 0 && filePerc < 100 ? (
                     <span className='text-slate-700'> { `Uploading ${filePerc}%` } </span> )
                     :
                     filePerc === 100 ? (
-                    <span className='text-green-700'> Image successfully uploaded </span> )
+                    <span className='text-green-700'> Slika je uspešno postavljena </span> )
                   :
                   ('')
                 }
               </p>
-              <label className='font-semibold'>Username</label>
-              <input type="text" placeholder='username' id='username' className='border p-3 rounded-lg' defaultValue={currentUser.username} onChange={handleChange}/>
+              <label className='font-semibold'>Korisničko ime</label>
+              <input type="text" placeholder='Korisničko ime' id='username' className='border p-3 rounded-lg' defaultValue={currentUser.username} onChange={handleChange}/>
               <label className='font-semibold'>Email</label>
-              <input type="email" placeholder='email' id='email' className='border p-3 rounded-lg' defaultValue={currentUser.email} onChange={handleChange}/>
-              <label className='font-semibold'>Password</label>
-              <input type="password" placeholder='password' id='password' className='border p-3 rounded-lg' onChange={handleChange}/>
+              <input type="email" placeholder='Email' id='email' className='border p-3 rounded-lg' defaultValue={currentUser.email} onChange={handleChange}/>
+              <label className='font-semibold'>Lozinka</label>
+              <input type="password" placeholder='Lozinka' id='password' className='border p-3 rounded-lg' onChange={handleChange}/>
           
-              <button disabled={loading} className='bg-custom-contrast-color text-white hover:opacity-95 rounded-lg p-3 uppercase disabled:opacity-80'> {loading ? 'Loading...' : 'Update profile'} </button>
+              <button disabled={loading} className='bg-custom-contrast-color text-white hover:opacity-95 rounded-lg p-3 uppercase disabled:opacity-80'> {loading ? 'Učitavanje...' : 'Ažuriraj profil'} </button>
               
           
             </form>
           
             <div className='flex justify-between mt-5'>
-              <span onClick={openModal} className='text-red-700 cursor-pointer hover:underline'> Delete account </span>
+              <span onClick={openModal} className='text-red-700 cursor-pointer hover:underline'> Obrišite nalog </span>
               
-              <span onClick={handleSignout} className='text-red-700 cursor-pointer hover:underline'> Sign out </span>
+              <span onClick={handleSignout} className='text-red-700 cursor-pointer hover:underline'> Odjavite se </span>
             </div>
           
             <p className='text-red-700 mt-5'> {error ? error : '' } </p> 
-            <p className='text-green-700 mt-5'> {updateSuccess ? 'Updated successfully!' : '' } </p>
+            <p className='text-green-700 mt-5'> {updateSuccess ? 'Uspešno ažurirano!' : '' } </p>
           </div> 
 
         )}
@@ -260,11 +260,11 @@ export default function Profile() {
         { activeTab === 'pets' && (
           <div className='p-3 max-w-xl mx-auto'>
             
-            <p className='text-red-700 mt-5'> {showListingsError ? 'Error showing listings' : '' } </p>
+            <p className='text-red-700 mt-5'> {showListingsError ? 'Greška pri prikazivanju oglasa' : '' } </p>
 
             {userListings && userListings.length > 0 ? ( 
               <div className='flex flex-col gap-4'> 
-                <h1 className='text-custom-text-color text-center mt-7 text-2xl font-semibold'> Pets </h1>
+                <h1 className='text-custom-text-color text-center mt-7 text-2xl font-semibold'> Ljubimci </h1>
                   {userListings.map((listing) => (
                     <div key={listing._id} className='border rounded-lg p-3 flex justify-between items-center gap-4'>
                       <Link to={`/listing/${listing._id}`}>
@@ -276,21 +276,21 @@ export default function Profile() {
                       </Link>
 
                       <div className='flex gap-4 sm:gap-8 items-center'> 
-                        <button onClick={()=> handleListingDelete(listing._id)} className='text-red-700 uppercase'> Delete </button>
+                        <button onClick={()=> handleListingDelete(listing._id)} className='text-red-700 uppercase'> Obrišite </button>
 
                         <Link to={`/update-listing/${listing._id}`}>
-                          <button className='text-green-700 uppercase'> Edit </button>
+                          <button className='text-green-700 uppercase'> Ažurirajte </button>
                         </Link>
                       </div>
 
                     </div>
                   ))}
 
-                <p className='text-red-700 mt-5'> {deleteListingError ?  'Error deleting a list' : '' } </p> 
+                <p className='text-red-700 mt-5'> {deleteListingError ?  'Greška pri brisanju oglasa' : '' } </p> 
               </div> 
             ) : (
               <div className=''>
-                <p className='text-custom-text-color text-xl font-semibold text-center'> Currently, there are no results to show. </p>
+                <p className='text-custom-text-color text-xl font-semibold text-center'> Trenutno nema rezultata za prikazivanje. </p>
               </div>
             )
             }
@@ -298,7 +298,7 @@ export default function Profile() {
         )}
 
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} onConfirm={handleDeleteUser} title="Delete Confirmation" message="Are you sure you want to delete account?"/>
+      <Modal isOpen={isModalOpen} onClose={closeModal} onConfirm={handleDeleteUser} title="Potvrda brisanja" message="Da li ste sigurni da želite da obrišete nalog?"/>
 
     </div>
 
