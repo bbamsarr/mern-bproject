@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaUsers, FaFile, FaTrash, FaUserPlus } from 'react-icons/fa';
+import { FaUsers, FaFile, FaTrash, FaUserPlus, FaDog } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import Modal from '../components/Modal';
 import { Link } from 'react-router-dom';
@@ -61,6 +61,9 @@ export default function AdminDashboard() {
 
     const handleDeleteUser = async () => {
         try {
+            const resUser = await fetch(`/api/user/${deleteUserID}`);
+            const user = await resUser.json();
+ 
             const res = await fetch(`/api/user/delete/${deleteUserID}`, {
                 method: 'DELETE',
             });
@@ -69,6 +72,22 @@ export default function AdminDashboard() {
                 setUsers((prev) => prev.filter((user) => user._id !== deleteUserID));
                 setTotalUsers(prevTotalUsers => prevTotalUsers - 1);
                 setIsModalOpenUser(false);
+
+                const currentDate = new Date();
+                const createdAt = new Date(user.createdAt);
+
+                const startOfThisMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+                const endOfThisMonth = new Date(currentDate.getFullYear(), currentDate.getMonth()+1, 0);
+                if (createdAt >= startOfThisMonth && createdAt <= endOfThisMonth) {
+                    setNewUsersThisMonth((prevNewUsersThisMonth) => prevNewUsersThisMonth - 1);
+                }
+
+                const startOfLastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth()-1, 1);
+                const endOfLastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+                if (createdAt >= startOfLastMonth && createdAt <= endOfLastMonth) {
+                    setNewUsersLastMonth((prevNewUsersLastMonth) => prevNewUsersLastMonth - 1);
+                }
+
             }
             else {
                 console.log(data.message);
@@ -121,17 +140,17 @@ export default function AdminDashboard() {
             <div className='sm:mx-auto xl:-translate-x-[64px] mt-20 mb-20'>
                     <div className='flex flex-col sm:flex-row items-center justify-center gap-4 p-8'>
                         <div className='w-full flex flex-col items-center border-2 p-4 rounded-lg shadow-lg'>
-                            <FaUsers className='text-3xl text-custom-darkblue'> </FaUsers>
+                            <FaUsers className='text-3xl text-custom-contrast-color'> </FaUsers>
                             <span className='text-xl'> Korisnici </span>
                             <span className='text-2xl'> {totalUsers} </span>
                         </div>
                         <div className='w-full flex flex-col items-center border-2 p-4 rounded-lg shadow-lg'>
-                            <FaUserPlus className='text-3xl text-custom-darkblue'> </FaUserPlus>
+                            <FaUserPlus className='text-3xl text-custom-contrast-color'> </FaUserPlus>
                             <span className='text-xl'> + prošli mesec </span>
                             <span className='text-2xl'> {newUsersLastMonth} </span>
                         </div>
                         <div className='w-full  flex flex-col items-center border-2 p-4 rounded-lg shadow-lg'>
-                            <FaUserPlus className='text-3xl text-custom-darkblue'> </FaUserPlus>
+                            <FaUserPlus className='text-3xl text-custom-contrast-color'> </FaUserPlus>
                             <span className='text-xl'> + ovaj mesec </span>
                             <span className='text-2xl'> {newUsersThisMonth} </span>
                         </div>
@@ -185,7 +204,7 @@ export default function AdminDashboard() {
                 <div className='sm:mx-auto xl:-translate-x-[64px] mt-20 mb-20'>
                     <div className='flex flex-col sm:flex-row items-center justify-center gap-4 p-8'>
                         <div className='w-full flex flex-col items-center border-2 p-4 rounded-lg shadow-lg'>
-                            <FaUsers className='text-3xl text-custom-darkblue'> </FaUsers>
+                            <FaDog className='text-3xl text-custom-contrast-color'> </FaDog>
                             <span className='text-xl'> Ukupno ljubimaca </span>
                             <span className='text-2xl'> {totalListings} </span>
                         </div>
@@ -210,7 +229,7 @@ export default function AdminDashboard() {
                                         <th className='p-3 text-left'> Ime </th>
                                         <th className='p-3 text-left'> Vrsta </th>
                                         <th className='p-3 text-left'> Rasa </th>
-                                        <th className='p-3 text-left'> Starost </th>
+                                        <th className='p-3 text-left'> Lokacija </th>
                                         <th className='p-3 text-left'> Obriši </th>
                                     </tr>
                                 </thead>
@@ -232,7 +251,7 @@ export default function AdminDashboard() {
                                             {listing.breed}
                                         </td>
                                         <td className='p-3'>
-                                            {listing.age}
+                                            {listing.location}
                                         </td>
                                         <td className='p-3'>
                                             <span className='cursor-pointer text-red-500 hover:text-red-700' onClick={() => { setIsModalOpenListing(true); setDeleteListingID(listing._id);}}> Obriši </span>

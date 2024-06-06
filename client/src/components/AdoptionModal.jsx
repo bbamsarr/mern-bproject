@@ -78,7 +78,7 @@ const Modal = ({isOpen, onClose, listing}) => {
             agreementToSpayThePet: 'Sporazum o sterilizaciji ljubimca',
             yes: 'da',
             no: 'ne',
-            house: 'kuca',
+            house: 'kuća',
             apartment: 'stan',
         };
         return Object.keys(data).reduce((acc, key) => {

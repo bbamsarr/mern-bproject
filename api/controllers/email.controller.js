@@ -14,8 +14,8 @@ function formatEmailBody(formData) {
     const entries = Object.entries(formData);
     const formattedEntries = entries.map(([key, value]) => `<p><strong>${formatKey(key)}:</strong> ${formatValue(value)}</p>`);
     return `<div>
-                <p> Zdravo! Javljam se sa iskrenim interesovanjem za usvajanje Vašeg ljubimca. 
-                Radujem se prilici da ga dočekam u svoju porodicu i dom. U nastavku Vam šaljem svoje lične podatke.
+                <p> Zdravo! Javljam se sa velikim interesovanjem za usvajanje Vašeg ljubimca. 
+                U nastavku Vam šaljem svoje lične podatke.
                 </p>
                 ${formattedEntries.join('')}
             </div>`;
@@ -35,13 +35,13 @@ export const sendEmailForAdoption = async (req, res, next) => {
         const mailOptions = {
             from: emailFrom,
             to: emailTo,
-            subject: `New Pet Adoption Request For ${regarding}`,
+            subject: `Zahtev za usvajanje kućnog ljubimca: ${regarding}`,
             html: formatEmailBody(formData),
             replyTo: emailFrom,
         };
 
         await transporter.sendMail(mailOptions);
-        res.status(200).json('Email sent successfully');
+        res.status(200).json('Email je uspešno poslat!');
 
     } catch (error) {
         next(error);
